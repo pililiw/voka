@@ -1,0 +1,39 @@
+name: Bug report
+description: Voka produced something you did not expect
+labels: [bug]
+body:
+  - type: input
+    id: typed
+    attributes:
+      label: What you typed
+      description: The exact keys, including Space, Tab or Enter.
+      placeholder: "recieve<Space>"
+    validations:
+      required: true
+  - type: input
+    id: before
+    attributes:
+      label: Text before the caret
+      placeholder: "I did not "
+  - type: input
+    id: got
+    attributes:
+      label: What you got
+    validations:
+      required: true
+  - type: input
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: input
+    id: app
+    attributes:
+      label: Application
+      description: The application you were typing in.
+  - type: input
+    id: version
+    attributes:
+      label: Voka and macOS version
+      description: The Voka version is the first line of its input menu.

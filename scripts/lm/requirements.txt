@@ -1,0 +1,7 @@
+# Versions convert.py was last run with (Python 3.12).
+torch==2.15.0
+transformers==5.23.0
+coremltools==9.0
+numpy==2.5.4
+# Only for the 8-bit palette variant of `convert.py --compare`.
+scikit-learn==1.9.1

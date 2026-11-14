@@ -1,0 +1,90 @@
+Morning all! Yesterday I finished the migration script, and today I'm picking up JIRA-482 unless something more urgent comes in.
+@dana can you take a look at PR #88 when you have a minute? It's a small change in src/utils/parse.ts.
+Heads up: deploying v2.3.1 to staging at 3pm. Please hold off merging to main until it's done.
+Prod is throwing 500s on the checkout endpoint again. I'm checking the logs now.
+Rolling back to v2.3.0 as a precaution; we'll investigate the root cause after things settle.
+Did anyone else see the flaky test in CI, or is it just me? It fails about once in every five runs.
+Nit: this variable name is a bit confusing. Could we rename tmp to pendingOrders?
+Looks good, but let's add a unit test for the empty array case before we merge.
+Can someone explain why we're using getUserById here instead of the cached lookup? Genuinely curious.
+I'm blocked on the design for the settings page. @Ana, do you have a Figma link yet?
+Standup notes: Mateus is out sick, Priya is on call this week, and the release is still scheduled for Thursday.
+Try restarting the payments service and tell me what you see. Two of the workers look stuck to me.
+We should bump max_retries to 5 and add some jitter; otherwise we'll hammer the API during an outage.
+The p95 latency jumped from 120ms to 340ms after the last deploy, so I'm going to dig into the query plan.
+Reminder: please update your tickets in Jira before the sprint review at 10:30 tomorrow.
+Can we move the retro to Friday? Half the team is at the conference on Thursday.
+I think the memory leak is in the websocket handler; the heap grows by about 16MB every hour.
+Just merged the hotfix. Can someone confirm that the dashboard looks healthy now?
+Who owns the billing-service repo these days? I need someone to approve a one-line change.
+Don't force push to main, please. Use git revert instead so we keep the history intact.
+If you're rebasing, git rebase -i HEAD~3 is the quickest way to squash those commits.
+Thanks @Oluwaseun, that fixed it! The problem was a missing environment variable in the staging config.
+Quick question: is the S3 bucket for uploads public? I'd like to double-check before the security review.
+We're seeing a spike in 429 responses from the vendor API; I've asked them to raise our rate limit.
+Incident update: the database failover completed at 02:14 UTC and all services are recovering. Next update in 30 minutes.
+Can we get a second pair of eyes on this Terraform plan? It wants to destroy an RDS instance and I don't love that.
+I'll write up the postmortem tomorrow. Please add anything you remember about the timeline to the doc.
+The new onboarding flow tested well with five users, though two of them missed the skip button entirely.
+@here the office Wi-Fi is down again, so I'm working from the cafe across the street. Ping me on Slack if needed.
+Pushed a fix to the branch feature/search-filters; the lint errors should be gone now.
+Why does the build fail on my machine but pass on CI? I've already tried npm ci and clearing the cache.
+It's probably a Node version mismatch. Check .nvmrc and run nvm use before npm run build.
+PM question: can we ship the beta to 10% of users first, and then ramp up if the error rate stays flat?
+Support says three customers reported duplicate emails this morning. Is anyone looking into the queue worker?
+I'll take it. I suspect the retry logic is re-enqueuing messages that were already acknowledged.
+Could we please stop adding new fields to the user table without a migration plan? It's getting messy.
+The design tokens are out of sync again; the button radius in code is 6px but the mocks say 8px.
+Let me know if you want to pair on this. I'm free after lunch, and I've dealt with a similar issue before.
+Alert fired for high CPU on ec2-prod-07. It looks like a runaway cron job, so I'm killing it now.
+Can we add a feature flag for the new pricing page? That way marketing can launch whenever they're ready.
+All green on the pipeline! Merging in five minutes unless someone objects.
+Can you share the repro steps? I can't reproduce it on iOS 18, and the Android build seems fine too.
+I'd suggest we split this PR into two: one for the refactor and one for the actual behavior change.
+Docs are updated. See https://example.com/docs/auth for the new token refresh flow.
+We need a decision on the vendor by EOD, otherwise we'll miss the procurement window.
+Is there any reason we aren't caching the response from /api/v2/products? It's the same payload for every user.
+Sorry, wrong channel! Please ignore my last message.
+The staging database was reset overnight, so any test accounts you created last week are gone.
+Let's not over-engineer this. A simple cron job that runs every 15 minutes will do for now.
+Great catch, @Siobhan! That race condition has been haunting us for months.
+We should set HTTP_TIMEOUT to 30 seconds in production; the default is too aggressive for the report export.
+PagerDuty is paging me for the third time tonight. Can someone else take the secondary rotation?
+I just finished the load test: 5,000 concurrent users, 0.4% errors, and the median response time stayed under 200ms.
+Reminder that the freeze begins on Dec 15, so any risky changes need to land before then.
+Does the config.yaml in the repo root override the one in ~/.config/app? I thought the home directory won.
+The customer's account got locked because of too many failed logins; can ops unlock it and reset the counter?
+This test is asserting on a hardcoded timestamp, which is why it breaks every time daylight saving changes.
+Thanks for the quick review. I've addressed all comments except the one about renaming the module; let's discuss that on Monday.
+PTO next week, folks! Fatima will cover my on-call shifts, and my out-of-office is set up.
+Honest question: do we really need three different date libraries in this codebase?
+Draft release notes are in Notion. Please add anything I missed, especially the breaking changes.
+The roadmap review is moved to 2 p.m. in the large meeting room; I'll bring the printed copies.
+We shouldn't log the full request body. It could contain user emails or tokens, which is a compliance headache.
+I'll set up a Zoom link for the demo and send it out before lunch.
+The PR description is missing a testing section. Could you add how you verified it locally?
+Looks like the cert on api.example.com expires in six days. Who has access to renew it?
+We have about 1.5M rows in that table now, so the missing index is going to hurt sooner or later.
+Please don't merge your own PRs without at least one approval; that's what the branch protection is for.
+Good morning! The overnight batch job finished without errors, and the numbers on the dashboard look right.
+Switching to Postgres 16 shaved about 20% off our nightly report time. Nice win for the data team.
+Has anyone tried the new admission controllers in the cluster? Several of our deployments are being rejected for missing labels.
+Many customer support tickets this week mention the same login bug, so I'd bump it to P1.
+Let me re-run the pipeline. It might just be a transient network error when pulling the Docker image.
+I won't be at the standup today since I've got a dentist appointment, but my update is in the thread.
+Please review the migration plan before Thursday; I'd like to run it during the quiet window at 02:00.
+Can't believe it's already Friday! Don't forget to log your hours, and have a good weekend, everyone.
+The linter wants a trailing comma there. Run npm run lint -- --fix and it'll sort itself out.
+We keep hitting the same rate limit because every worker retries at the same time. A backoff would fix it.
+Quick poll: do we want to keep the weekly sync, or switch to a shorter async update in the channel?
+Tell the user to clear their cache and try again; that usually resolves the stale asset problem.
+Let the user choose between light and dark mode on first launch; the system default isn't always what they want.
+Yesterday I let the intern run the deploy script, and honestly he did great. We should give him more ownership.
+Did she go ahead and approve the budget? I saw her leave the meeting early, so I'm not sure.
+I made him wait on purpose until we had the final numbers, so no one has to rework the slides.
+The people who run the data pipeline suggest we pause new jobs until the backlog clears.
+I suggest he take the on-call shift this week, since he knows the payment service better than anyone.
+If he were here, he'd say we need a rollback plan before we ship.
+Last week we had Sam come in to walk the team through the new auth flow, and it helped a lot.
+Shoutout to the SRE team for staying up all night to keep the site running during the outage.
+The ticket (JIRA-1190) is marked as done, but I don't see the changes in production. Was it actually released?

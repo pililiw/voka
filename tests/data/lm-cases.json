@@ -1,0 +1,11 @@
+[
+  {"before": "Because of the bad ", "keys": "wether ", "accept": ["weather "]},
+  {"before": "dry sand in the ", "keys": "dezert\t", "accept": ["desert "]},
+  {"before": "compiled the operating system ", "keys": "kernal\t", "accept": ["kernel "]},
+  {"before": "take a ", "keys": "foto\t", "accept": ["photo "]},
+  {"before": "call my ", "keys": "fone\t", "accept": ["phone "]},
+  {"before": "my name is ", "keys": "priya ", "accept": ["priya ", "Priya "]},
+  {"before": "I use ", "keys": "spotify ", "accept": ["spotify ", "Spotify "]},
+  {"before": "talked to ", "keys": "olga ", "accept": ["olga ", "Olga "]},
+  {"before": "the weather is ", "keys": "nice ", "accept": ["nice "]}
+]

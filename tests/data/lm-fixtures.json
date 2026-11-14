@@ -1,0 +1,2794 @@
+{
+ "model": "jhu-clsp/ettin-decoder-17m",
+ "tokenizer": [
+  {
+   "text": "",
+   "ids": []
+  },
+  {
+   "text": " ",
+   "ids": [
+    209
+   ]
+  },
+  {
+   "text": "  ",
+   "ids": [
+    50276
+   ]
+  },
+  {
+   "text": "a b",
+   "ids": [
+    66,
+    270
+   ]
+  },
+  {
+   "text": "a  b",
+   "ids": [
+    66,
+    50276,
+    67
+   ]
+  },
+  {
+   "text": "a   b",
+   "ids": [
+    66,
+    50275,
+    67
+   ]
+  },
+  {
+   "text": "                              x",
+   "ids": [
+    50254,
+    50272,
+    89
+   ]
+  },
+  {
+   "text": "tab\there",
+   "ids": [
+    8476,
+    186,
+    1568
+   ]
+  },
+  {
+   "text": "line\n\nbreak",
+   "ids": [
+    1282,
+    187,
+    187,
+    7054
+   ]
+  },
+  {
+   "text": "end ",
+   "ids": [
+    423,
+    209
+   ]
+  },
+  {
+   "text": "don't we'll I'm they've he'd it's you're 'tis",
+   "ids": [
+    9903,
+    626,
+    359,
+    1833,
+    309,
+    1353,
+    597,
+    1849,
+    344,
+    1871,
+    352,
+    434,
+    368,
+    1472,
+    686,
+    35879
+   ]
+  },
+  {
+   "text": "DON'T",
+   "ids": [
+    39153,
+    8,
+    53
+   ]
+  },
+  {
+   "text": "rock'n'roll",
+   "ids": [
+    16249,
+    8,
+    79,
+    8,
+    1811
+   ]
+  },
+  {
+   "text": "it’s",
+   "ids": [
+    262,
+    457,
+    84
+   ]
+  },
+  {
+   "text": "naïve café Zöe",
+   "ids": [
+    2072,
+    30180,
+    36241,
+    1503,
+    2381,
+    70
+   ]
+  },
+  {
+   "text": "각 한국어",
+   "ids": [
+    26532,
+    212,
+    209,
+    39742,
+    166,
+    115,
+    244,
+    39907
+   ]
+  },
+  {
+   "text": "ﬁne Ångström",
+   "ids": [
+    46992,
+    212,
+    570,
+    17732,
+    1251,
+    46816
+   ]
+  },
+  {
+   "text": "日本語のテキスト",
+   "ids": [
+    49868,
+    19119,
+    241,
+    3917,
+    28656,
+    33548,
+    38206
+   ]
+  },
+  {
+   "text": "العربية שלום",
+   "ids": [
+    7427,
+    13793,
+    6900,
+    13621,
+    32229,
+    33839,
+    20770,
+    12859,
+    240
+   ]
+  },
+  {
+   "text": "😀 👍🏽 👨‍👩‍👧‍👦 🇯🇵",
+   "ids": [
+    14931,
+    235,
+    211,
+    22692,
+    228,
+    224,
+    14931,
+    226,
+    123,
+    22692,
+    228,
+    103,
+    325,
+    224,
+    14931,
+    228,
+    104,
+    325,
+    224,
+    14931,
+    228,
+    102,
+    325,
+    224,
+    14931,
+    228,
+    101,
+    22692,
+    218,
+    109,
+    14931,
+    218,
+    115
+   ]
+  },
+  {
+   "text": "x​y",
+   "ids": [
+    89,
+    12882,
+    90
+   ]
+  },
+  {
+   "text": "a b c",
+   "ids": [
+    66,
+    575,
+    67,
+    3930,
+    68
+   ]
+  },
+  {
+   "text": "1,250.00 2026-12-03 v1.2.3",
+   "ids": [
+    18,
+    13,
+    9519,
+    15,
+    361,
+    1384,
+    1731,
+    14,
+    805,
+    14,
+    2941,
+    362,
+    18,
+    15,
+    19,
+    15,
+    20
+   ]
+  },
+  {
+   "text": "~/Downloads/contract-final.pdf",
+   "ids": [
+    21785,
+    20865,
+    84,
+    16,
+    20987,
+    14,
+    13017,
+    15,
+    9275
+   ]
+  },
+  {
+   "text": "[MASK] and  [MASK]",
+   "ids": [
+    50284,
+    285,
+    50284
+   ]
+  },
+  {
+   "text": "a[SEP]b [CLS] [PAD] [UNK] [unused3]",
+   "ids": [
+    66,
+    50282,
+    67,
+    209,
+    50281,
+    209,
+    50283,
+    209,
+    50280,
+    209,
+    50288
+   ]
+  },
+  {
+   "text": "<|endoftext|> <|padding|>",
+   "ids": [
+    50279,
+    209,
+    1
+   ]
+  },
+  {
+   "text": "|||EMAIL_ADDRESS||| x",
+   "ids": [
+    50277,
+    1269
+   ]
+  },
+  {
+   "text": "[mask] [MASK",
+   "ids": [
+    60,
+    12477,
+    62,
+    544,
+    18690
+   ]
+  },
+  {
+   "text": "supercalifragilisticexpialidocious",
+   "ids": [
+    12185,
+    1179,
+    338,
+    22194,
+    300,
+    382,
+    547,
+    37755,
+    451,
+    301,
+    49514
+   ]
+  },
+  {
+   "text": "ę́́",
+   "ids": [
+    10060,
+    136,
+    212,
+    136,
+    212
+   ]
+  },
+  {
+   "text": "\u0000\u0001",
+   "ids": [
+    177,
+    178,
+    210
+   ]
+  },
+  {
+   "text": "﻿bom",
+   "ids": [
+    41497,
+    67,
+    297
+   ]
+  },
+  {
+   "text": "󠁁􏿿",
+   "ids": [
+    175,
+    243,
+    212,
+    212,
+    176,
+    226,
+    125,
+    125
+   ]
+  }
+ ],
+ "cases": [
+  {
+   "before": "Thank you very much, see u ",
+   "words": [
+    "tomorrow",
+    "see",
+    "you",
+    "very",
+    "tomorow"
+   ],
+   "context_ids": [
+    50281,
+    8398,
+    368,
+    1077,
+    1199,
+    13,
+    923,
+    1484
+   ],
+   "word_ids": [
+    [
+     10873
+    ],
+    [
+     923
+    ],
+    [
+     368
+    ],
+    [
+     1077
+    ],
+    [
+     7275,
+     263,
+     319
+    ]
+   ],
+   "scores": [
+    -10.2375,
+    -6.565,
+    -5.6685,
+    -6.2836,
+    -28.8481
+   ]
+  },
+  {
+   "before": "Dear Professor Wang, could I have ",
+   "words": [
+    "an",
+    "could",
+    "I",
+    "Dear",
+    "the",
+    "a"
+   ],
+   "context_ids": [
+    50281,
+    24723,
+    12734,
+    17868,
+    13,
+    812,
+    309,
+    452
+   ],
+   "word_ids": [
+    [
+     271
+    ],
+    [
+     812
+    ],
+    [
+     309
+    ],
+    [
+     37268
+    ],
+    [
+     253
+    ],
+    [
+     247
+    ]
+   ],
+   "scores": [
+    -3.6365,
+    -9.1755,
+    -7.2703,
+    -14.709,
+    -3.3667,
+    -2.2774
+   ]
+  },
+  {
+   "before": "There is something wrong ",
+   "words": [
+    "with",
+    "something",
+    "u",
+    "wrong",
+    "wiht"
+   ],
+   "context_ids": [
+    50281,
+    2512,
+    310,
+    1633,
+    3430
+   ],
+   "word_ids": [
+    [
+     342
+    ],
+    [
+     1633
+    ],
+    [
+     1484
+    ],
+    [
+     3430
+    ],
+    [
+     38435,
+     384
+    ]
+   ],
+   "scores": [
+    -0.2323,
+    -12.971,
+    -13.376,
+    -10.4415,
+    -15.8981
+   ]
+  },
+  {
+   "before": "The government should ",
+   "words": [
+    "invest",
+    "government",
+    "more",
+    "The",
+    "invast"
+   ],
+   "context_ids": [
+    50281,
+    510,
+    2208,
+    943
+   ],
+   "word_ids": [
+    [
+     1718
+    ],
+    [
+     2208
+    ],
+    [
+     625
+    ],
+    [
+     380
+    ],
+    [
+     828,
+     505
+    ]
+   ],
+   "scores": [
+    -6.0469,
+    -10.8202,
+    -8.4592,
+    -14.4025,
+    -24.5762
+   ]
+  },
+  {
+   "before": "I ",
+   "words": [
+    "ate",
+    "friend",
+    "eated"
+   ],
+   "context_ids": [
+    50281,
+    42
+   ],
+   "word_ids": [
+    [
+     18739
+    ],
+    [
+     3331
+    ],
+    [
+     299,
+     456
+    ]
+   ],
+   "scores": [
+    -9.2414,
+    -13.247,
+    -20.9521
+   ]
+  },
+  {
+   "before": "The restaurant was crowded so we waited for ",
+   "words": [
+    "an",
+    "restaurant",
+    "for",
+    "so",
+    "The",
+    "a"
+   ],
+   "context_ids": [
+    50281,
+    510,
+    10301,
+    369,
+    22299,
+    594,
+    359,
+    13308,
+    323
+   ],
+   "word_ids": [
+    [
+     271
+    ],
+    [
+     10301
+    ],
+    [
+     323
+    ],
+    [
+     594
+    ],
+    [
+     380
+    ],
+    [
+     247
+    ]
+   ],
+   "scores": [
+    -3.6784,
+    -9.3765,
+    -8.0672,
+    -7.4359,
+    -8.4275,
+    -1.6292
+   ]
+  },
+  {
+   "before": "Thank you for your kindness during my stay; I really ",
+   "words": [
+    "appreciated",
+    "apreciated"
+   ],
+   "context_ids": [
+    50281,
+    8398,
+    368,
+    323,
+    634,
+    28426,
+    1309,
+    619,
+    3297,
+    28,
+    309,
+    1663
+   ],
+   "word_ids": [
+    [
+     14109
+    ],
+    [
+     1049,
+     2845,
+     4215
+    ]
+   ],
+   "scores": [
+    -4.7898,
+    -23.235
+   ]
+  },
+  {
+   "before": "The declining birth rate poses a serious ",
+   "words": [
+    "challenge",
+    "a",
+    "the",
+    "serious",
+    "charenge"
+   ],
+   "context_ids": [
+    50281,
+    510,
+    27177,
+    4201,
+    2281,
+    24543,
+    247,
+    4092
+   ],
+   "word_ids": [
+    [
+     5691
+    ],
+    [
+     247
+    ],
+    [
+     253
+    ],
+    [
+     4092
+    ],
+    [
+     448,
+     6950,
+     463
+    ]
+   ],
+   "scores": [
+    -2.6218,
+    -9.3309,
+    -11.7988,
+    -6.309,
+    -33.6169
+   ]
+  },
+  {
+   "before": "It is very cold today, the temperature is ",
+   "words": [
+    "zero",
+    "cold",
+    "temperature",
+    "is",
+    "It",
+    "jero"
+   ],
+   "context_ids": [
+    50281,
+    1147,
+    310,
+    1077,
+    5412,
+    3063,
+    13,
+    253,
+    3276,
+    310
+   ],
+   "word_ids": [
+    [
+     5058
+    ],
+    [
+     5412
+    ],
+    [
+     3276
+    ],
+    [
+     310
+    ],
+    [
+     733
+    ],
+    [
+     480,
+     2771
+    ]
+   ],
+   "scores": [
+    -7.3456,
+    -4.3703,
+    -6.7589,
+    -10.2715,
+    -14.7621,
+    -22.3261
+   ]
+  },
+  {
+   "before": "Many Korean students ",
+   "words": [
+    "go",
+    "Korean",
+    "to",
+    "goes"
+   ],
+   "context_ids": [
+    50281,
+    10195,
+    13247,
+    3484
+   ],
+   "word_ids": [
+    [
+     564
+    ],
+    [
+     13247
+    ],
+    [
+     281
+    ],
+    [
+     4566
+    ]
+   ],
+   "scores": [
+    -5.8175,
+    -12.8775,
+    -8.6925,
+    -12.0741
+   ]
+  },
+  {
+   "before": "Plastic surgery is very common in Korea, and some people think it's ",
+   "words": [
+    "necessary",
+    "nesessary"
+   ],
+   "context_ids": [
+    50281,
+    3493,
+    3258,
+    5869,
+    310,
+    1077,
+    1846,
+    275,
+    9733,
+    13,
+    285,
+    690,
+    952,
+    1158,
+    352,
+    434
+   ],
+   "word_ids": [
+    [
+     3309
+    ],
+    [
+     295,
+     265,
+     405,
+     552
+    ]
+   ],
+   "scores": [
+    -5.882,
+    -38.2234
+   ]
+  },
+  {
+   "before": "In my country the people ",
+   "words": [
+    "eat",
+    "people",
+    "In",
+    "eats"
+   ],
+   "context_ids": [
+    50281,
+    688,
+    619,
+    2586,
+    253,
+    952
+   ],
+   "word_ids": [
+    [
+     6008
+    ],
+    [
+     952
+    ],
+    [
+     496
+    ],
+    [
+     40724
+    ]
+   ],
+   "scores": [
+    -7.6765,
+    -7.5996,
+    -10.8262,
+    -12.4762
+   ]
+  },
+  {
+   "before": "I don't understand, can you ",
+   "words": [
+    "speak",
+    "I",
+    "espeak"
+   ],
+   "context_ids": [
+    50281,
+    42,
+    1053,
+    626,
+    2096,
+    13,
+    476,
+    368
+   ],
+   "word_ids": [
+    [
+     3984
+    ],
+    [
+     309
+    ],
+    [
+     1578,
+     27183
+    ]
+   ],
+   "scores": [
+    -8.1025,
+    -7.6918,
+    -26.337
+   ]
+  },
+  {
+   "before": "I would like to know if the course ",
+   "words": [
+    "includes",
+    "to",
+    "include"
+   ],
+   "context_ids": [
+    50281,
+    42,
+    651,
+    751,
+    281,
+    871,
+    604,
+    253,
+    2282
+   ],
+   "word_ids": [
+    [
+     3797
+    ],
+    [
+     281
+    ],
+    [
+     2486
+    ]
+   ],
+   "scores": [
+    -7.2284,
+    -4.806,
+    -12.4976
+   ]
+  },
+  {
+   "before": "Please inform me ",
+   "words": [
+    "about",
+    "abotu"
+   ],
+   "context_ids": [
+    50281,
+    7845,
+    4151,
+    479
+   ],
+   "word_ids": [
+    [
+     670
+    ],
+    [
+     490,
+     302,
+     86
+    ]
+   ],
+   "scores": [
+    -2.1011,
+    -21.4583
+   ]
+  },
+  {
+   "before": "I thought you were coming ",
+   "words": [
+    "with",
+    "wiht"
+   ],
+   "context_ids": [
+    50281,
+    42,
+    1869,
+    368,
+    497,
+    3551
+   ],
+   "word_ids": [
+    [
+     342
+    ],
+    [
+     38435,
+     384
+    ]
+   ],
+   "scores": [
+    -4.8351,
+    -16.4952
+   ]
+  },
+  {
+   "before": "What time ",
+   "words": [
+    "does",
+    "the",
+    "do"
+   ],
+   "context_ids": [
+    50281,
+    1276,
+    673
+   ],
+   "word_ids": [
+    [
+     1057
+    ],
+    [
+     253
+    ],
+    [
+     513
+    ]
+   ],
+   "scores": [
+    -2.9331,
+    -4.6869,
+    -4.5906
+   ]
+  },
+  {
+   "before": "In Germany we separate our ",
+   "words": [
+    "rubbish",
+    "our",
+    "we",
+    "rubish"
+   ],
+   "context_ids": [
+    50281,
+    688,
+    6176,
+    359,
+    4858,
+    776
+   ],
+   "word_ids": [
+    [
+     45785
+    ],
+    [
+     776
+    ],
+    [
+     359
+    ],
+    [
+     7692,
+     763
+    ]
+   ],
+   "scores": [
+    -10.9664,
+    -8.4425,
+    -8.7696,
+    -19.0753
+   ]
+  },
+  {
+   "before": "We ",
+   "words": [
+    "should",
+    "before",
+    "next",
+    "shoud"
+   ],
+   "context_ids": [
+    50281,
+    1231
+   ],
+   "word_ids": [
+    [
+     943
+    ],
+    [
+     1078
+    ],
+    [
+     1735
+    ],
+    [
+     439,
+     2995
+    ]
+   ],
+   "scores": [
+    -5.0249,
+    -13.8238,
+    -9.6524,
+    -14.6311
+   ]
+  },
+  {
+   "before": "The debate about nuclear energy remains highly ",
+   "words": [
+    "controversial",
+    "controversal"
+   ],
+   "context_ids": [
+    50281,
+    510,
+    8881,
+    670,
+    6069,
+    2341,
+    4558,
+    4122
+   ],
+   "word_ids": [
+    [
+     15620
+    ],
+    [
+     9474,
+     267
+    ]
+   ],
+   "scores": [
+    -1.4206,
+    -17.7427
+   ]
+  },
+  {
+   "before": "I am hungry, do you want ",
+   "words": [
+    "an",
+    "I",
+    "want",
+    "a"
+   ],
+   "context_ids": [
+    50281,
+    42,
+    717,
+    18254,
+    13,
+    513,
+    368,
+    971
+   ],
+   "word_ids": [
+    [
+     271
+    ],
+    [
+     309
+    ],
+    [
+     971
+    ],
+    [
+     247
+    ]
+   ],
+   "scores": [
+    -4.6241,
+    -7.7581,
+    -12.6773,
+    -2.7303
+   ]
+  },
+  {
+   "before": "The room was comfortable but the ",
+   "words": [
+    "people",
+    "The",
+    "door",
+    "comfortable",
+    "persons"
+   ],
+   "context_ids": [
+    50281,
+    510,
+    2316,
+    369,
+    9848,
+    533,
+    253
+   ],
+   "word_ids": [
+    [
+     952
+    ],
+    [
+     380
+    ],
+    [
+     3369
+    ],
+    [
+     9848
+    ],
+    [
+     7732
+    ]
+   ],
+   "scores": [
+    -4.9842,
+    -12.4214,
+    -3.5475,
+    -8.6283,
+    -10.5403
+   ]
+  },
+  {
+   "before": "French orthography is ",
+   "words": [
+    "difficult",
+    "dificult"
+   ],
+   "context_ids": [
+    50281,
+    21258,
+    9373,
+    3756,
+    310
+   ],
+   "word_ids": [
+    [
+     2834
+    ],
+    [
+     277,
+     692,
+     503
+    ]
+   ],
+   "scores": [
+    -6.244,
+    -18.5961
+   ]
+  },
+  {
+   "before": "My father has three ",
+   "words": [
+    "brothers",
+    "brothrs"
+   ],
+   "context_ids": [
+    50281,
+    3220,
+    3392,
+    556,
+    1264
+   ],
+   "word_ids": [
+    [
+     13189
+    ],
+    [
+     26425,
+     2967
+    ]
+   ],
+   "scores": [
+    -4.2024,
+    -25.6635
+   ]
+  },
+  {
+   "before": "Many ",
+   "words": [
+    "students",
+    "that",
+    "think",
+    "Many",
+    "studnts"
+   ],
+   "context_ids": [
+    50281,
+    10195
+   ],
+   "word_ids": [
+    [
+     3484
+    ],
+    [
+     326
+    ],
+    [
+     1158
+    ],
+    [
+     6676
+    ],
+    [
+     799,
+     79,
+     1641
+    ]
+   ],
+   "scores": [
+    -5.3578,
+    -9.3137,
+    -7.5278,
+    -10.8672,
+    -23.7248
+   ]
+  },
+  {
+   "before": "I am ",
+   "words": [
+    "coming",
+    "am",
+    "I",
+    "comming"
+   ],
+   "context_ids": [
+    50281,
+    42,
+    717
+   ],
+   "word_ids": [
+    [
+     3551
+    ],
+    [
+     717
+    ],
+    [
+     309
+    ],
+    [
+     764,
+     272
+    ]
+   ],
+   "scores": [
+    -5.2794,
+    -12.3931,
+    -14.2648,
+    -16.4172
+   ]
+  },
+  {
+   "before": "Kindly ",
+   "words": [
+    "revert",
+    "revart"
+   ],
+   "context_ids": [
+    50281,
+    18808,
+    314
+   ],
+   "word_ids": [
+    [
+     43004
+    ],
+    [
+     3585,
+     435
+    ]
+   ],
+   "scores": [
+    -9.1965,
+    -19.1955
+   ]
+  },
+  {
+   "before": "I'm stuck in ",
+   "words": [
+    "traffic",
+    "will",
+    "near",
+    "trafic"
+   ],
+   "context_ids": [
+    50281,
+    42,
+    1353,
+    10960,
+    275
+   ],
+   "word_ids": [
+    [
+     7137
+    ],
+    [
+     588
+    ],
+    [
+     2822
+    ],
+    [
+     1140,
+     71,
+     280
+    ]
+   ],
+   "scores": [
+    -10.5854,
+    -14.002,
+    -10.3919,
+    -14.6933
+   ]
+  },
+  {
+   "before": "I ",
+   "words": [
+    "regret",
+    "not",
+    "regrat"
+   ],
+   "context_ids": [
+    50281,
+    42
+   ],
+   "word_ids": [
+    [
+     14938
+    ],
+    [
+     417
+    ],
+    [
+     294,
+     25923
+    ]
+   ],
+   "scores": [
+    -10.3444,
+    -9.6807,
+    -23.7989
+   ]
+  },
+  {
+   "before": "",
+   "words": [
+    "Where",
+    "nearest",
+    "the",
+    "Wher"
+   ],
+   "context_ids": [
+    50281
+   ],
+   "word_ids": [
+    [
+     7161
+    ],
+    [
+     570,
+     4885
+    ],
+    [
+     783
+    ],
+    [
+     56,
+     379
+    ]
+   ],
+   "scores": [
+    -6.7109,
+    -15.0201,
+    -7.6416,
+    -12.7052
+   ]
+  },
+  {
+   "before": "Modern technology ",
+   "words": [
+    "helps",
+    "Modern",
+    "to",
+    "people",
+    "help"
+   ],
+   "context_ids": [
+    50281,
+    33824,
+    4302
+   ],
+   "word_ids": [
+    [
+     7729
+    ],
+    [
+     16349
+    ],
+    [
+     281
+    ],
+    [
+     952
+    ],
+    [
+     1361
+    ]
+   ],
+   "scores": [
+    -5.8687,
+    -11.4308,
+    -5.598,
+    -9.3446,
+    -8.1075
+   ]
+  },
+  {
+   "before": "The client wants a discount, but I am not sure we can ",
+   "words": [
+    "afford",
+    "am",
+    "aford"
+   ],
+   "context_ids": [
+    50281,
+    510,
+    5268,
+    5605,
+    247,
+    13630,
+    13,
+    533,
+    309,
+    717,
+    417,
+    2119,
+    359,
+    476
+   ],
+   "word_ids": [
+    [
+     7848
+    ],
+    [
+     717
+    ],
+    [
+     247,
+     4379
+    ]
+   ],
+   "scores": [
+    -3.0689,
+    -10.2604,
+    -27.7704
+   ]
+  },
+  {
+   "before": "The collapse of the old economic model left a ",
+   "words": [
+    "psychological",
+    "collapse",
+    "left",
+    "The",
+    "of",
+    "psyhological"
+   ],
+   "context_ids": [
+    50281,
+    510,
+    13551,
+    273,
+    253,
+    1711,
+    5054,
+    1566,
+    1669,
+    247
+   ],
+   "word_ids": [
+    [
+     12264
+    ],
+    [
+     13551
+    ],
+    [
+     1669
+    ],
+    [
+     380
+    ],
+    [
+     273
+    ],
+    [
+     32884,
+     73,
+     1975
+    ]
+   ],
+   "scores": [
+    -9.2947,
+    -6.5115,
+    -8.4183,
+    -10.1158,
+    -9.0138,
+    -32.2672
+   ]
+  },
+  {
+   "before": "What time does the ",
+   "words": [
+    "class",
+    "time",
+    "What",
+    "does",
+    "clas"
+   ],
+   "context_ids": [
+    50281,
+    1276,
+    673,
+    1057,
+    253
+   ],
+   "word_ids": [
+    [
+     966
+    ],
+    [
+     673
+    ],
+    [
+     1737
+    ],
+    [
+     1057
+    ],
+    [
+     502,
+     284
+    ]
+   ],
+   "scores": [
+    -7.4337,
+    -4.3149,
+    -10.9482,
+    -11.0916,
+    -15.0059
+   ]
+  },
+  {
+   "before": "The product is different from the ",
+   "words": [
+    "description",
+    "The",
+    "is",
+    "different",
+    "decription"
+   ],
+   "context_ids": [
+    50281,
+    510,
+    1885,
+    310,
+    1027,
+    432,
+    253
+   ],
+   "word_ids": [
+    [
+     5740
+    ],
+    [
+     380
+    ],
+    [
+     310
+    ],
+    [
+     1027
+    ],
+    [
+     1086,
+     1122,
+     279
+    ]
+   ],
+   "scores": [
+    -8.4256,
+    -11.8284,
+    -9.4307,
+    -6.9604,
+    -16.6311
+   ]
+  },
+  {
+   "before": "",
+   "words": [
+    "Pollution",
+    "of",
+    "is",
+    "in",
+    "Polution"
+   ],
+   "context_ids": [
+    50281
+   ],
+   "word_ids": [
+    [
+     49,
+     2555,
+     890
+    ],
+    [
+     1171
+    ],
+    [
+     261
+    ],
+    [
+     249
+    ],
+    [
+     49,
+     2241
+    ]
+   ],
+   "scores": [
+    -11.3214,
+    -9.8398,
+    -8.8579,
+    -8.1486,
+    -17.8857
+   ]
+  },
+  {
+   "before": "We drank tea and ate baklava, it was ",
+   "words": [
+    "very",
+    "wery"
+   ],
+   "context_ids": [
+    50281,
+    1231,
+    27215,
+    10331,
+    285,
+    18739,
+    35246,
+    77,
+    2623,
+    13,
+    352,
+    369
+   ],
+   "word_ids": [
+    [
+     1077
+    ],
+    [
+     259,
+     1771
+    ]
+   ],
+   "scores": [
+    -3.9788,
+    -18.1256
+   ]
+  },
+  {
+   "before": "People in my country ",
+   "words": [
+    "are",
+    "very",
+    "my",
+    "People",
+    "country",
+    "is"
+   ],
+   "context_ids": [
+    50281,
+    8836,
+    275,
+    619,
+    2586
+   ],
+   "word_ids": [
+    [
+     403
+    ],
+    [
+     1077
+    ],
+    [
+     619
+    ],
+    [
+     6491
+    ],
+    [
+     2586
+    ],
+    [
+     310
+    ]
+   ],
+   "scores": [
+    -1.8417,
+    -8.9039,
+    -8.2395,
+    -11.9462,
+    -9.5165,
+    -6.2515
+   ]
+  },
+  {
+   "before": "",
+   "words": [
+    "Hello",
+    "Helo",
+    "hello"
+   ],
+   "context_ids": [
+    50281
+   ],
+   "word_ids": [
+    [
+     12092
+    ],
+    [
+     9494,
+     80
+    ],
+    [
+     25521
+    ]
+   ],
+   "scores": [
+    -9.6192,
+    -16.2079,
+    -11.3993
+   ]
+  },
+  {
+   "before": "   \n",
+   "words": [
+    "weather",
+    "wether"
+   ],
+   "context_ids": [
+    50281
+   ],
+   "word_ids": [
+    [
+     32607
+    ],
+    [
+     88,
+     7851
+    ]
+   ],
+   "scores": [
+    -12.8557,
+    -15.9742
+   ]
+  },
+  {
+   "before": "Because of the bad ",
+   "words": [
+    "weather",
+    "whether",
+    "wether"
+   ],
+   "context_ids": [
+    50281,
+    8457,
+    273,
+    253,
+    3076
+   ],
+   "word_ids": [
+    [
+     8588
+    ],
+    [
+     1880
+    ],
+    [
+     259,
+     7851
+    ]
+   ],
+   "scores": [
+    -2.1278,
+    -15.3332,
+    -15.7571
+   ]
+  },
+  {
+   "before": "Because of the bad ",
+   "words": [
+    "wether",
+    "whether",
+    "weather",
+    "with",
+    "which"
+   ],
+   "context_ids": [
+    50281,
+    8457,
+    273,
+    253,
+    3076
+   ],
+   "word_ids": [
+    [
+     259,
+     7851
+    ],
+    [
+     1880
+    ],
+    [
+     8588
+    ],
+    [
+     342
+    ],
+    [
+     534
+    ]
+   ],
+   "scores": [
+    -15.7571,
+    -15.3332,
+    -2.1278,
+    -9.8508,
+    -11.3648
+   ]
+  },
+  {
+   "before": "Because of the bad",
+   "words": [
+    "weather",
+    "wether"
+   ],
+   "context_ids": [
+    50281,
+    8457,
+    273,
+    253,
+    3076
+   ],
+   "word_ids": [
+    [
+     8588
+    ],
+    [
+     259,
+     7851
+    ]
+   ],
+   "scores": [
+    -2.1278,
+    -15.7571
+   ]
+  },
+  {
+   "before": "The city council voted 7-2 on Tuesday to approve a $48.5 million budget for road repairs and new bike lanes. Prime Minister Aroha Parata said her government would not raise income tax before the next election. Shares of Northwind Logistics fell 4.2% in early trading after the company cut its full-year forecast. Researchers at the University of Leeds have developed a battery that charges in under ten minutes, according to a paper published Thursday. Heavy rain is expected across the region from 6 p.m. tonight, and forecasters have issued a flood warning for the River Aire. Oluwaseun Adeyemi scored twice in the second half as Lagos United beat Abuja Rangers 3-1 at the national stadium. ",
+   "words": [
+    "government",
+    "goverment",
+    "governor",
+    "govern",
+    "governed",
+    "governing"
+   ],
+   "context_ids": [
+    50281,
+    603,
+    15,
+    473,
+    7675,
+    88,
+    511,
+    328,
+    41260,
+    90,
+    35381,
+    11691,
+    7019,
+    275,
+    253,
+    1273,
+    2716,
+    347,
+    15184,
+    375,
+    1986,
+    7171,
+    26957,
+    6362,
+    29629,
+    495,
+    14,
+    18,
+    387,
+    253,
+    3872,
+    21711,
+    15
+   ],
+   "word_ids": [
+    [
+     2208
+    ],
+    [
+     1726,
+     420
+    ],
+    [
+     14176
+    ],
+    [
+     1809
+    ],
+    [
+     17886
+    ],
+    [
+     13200
+    ]
+   ],
+   "scores": [
+    -16.812,
+    -23.4269,
+    -15.4323,
+    -22.8251,
+    -22.3145,
+    -21.3731
+   ]
+  },
+  {
+   "before": "The city council voted 7-2 on Tuesday to approve a $48.5 million budget for road repairs and new bike lanes. Prime Minister Aroha Parata said her government would not raise income tax before the next election. Shares of Northwind Logistics ",
+   "words": [
+    "the",
+    "teh"
+   ],
+   "context_ids": [
+    50281,
+    285,
+    747,
+    13696,
+    24914,
+    15,
+    12128,
+    8308,
+    329,
+    287,
+    3227,
+    2956,
+    682,
+    753,
+    617,
+    2208,
+    651,
+    417,
+    7164,
+    6021,
+    2891,
+    1078,
+    253,
+    1735,
+    6132,
+    15,
+    1608,
+    4420,
+    273,
+    3729,
+    16668,
+    8192,
+    3397
+   ],
+   "word_ids": [
+    [
+     253
+    ],
+    [
+     716,
+     73
+    ]
+   ],
+   "scores": [
+    -6.6473,
+    -13.9085
+   ]
+  },
+  {
+   "before": "Le café près de l'église était fermé, so we ",
+   "words": [
+    "went",
+    "want",
+    "wnet"
+   ],
+   "context_ids": [
+    50281,
+    4015,
+    36241,
+    819,
+    12713,
+    372,
+    298,
+    8,
+    860,
+    3129,
+    885,
+    27611,
+    17043,
+    860,
+    13,
+    594,
+    359
+   ],
+   "word_ids": [
+    [
+     2427
+    ],
+    [
+     971
+    ],
+    [
+     259,
+     3024
+    ]
+   ],
+   "scores": [
+    -7.3469,
+    -3.1071,
+    -23.687
+   ]
+  },
+  {
+   "before": "Zöe and Amélie said the naïve plan was ",
+   "words": [
+    "fine",
+    "fien"
+   ],
+   "context_ids": [
+    50281,
+    59,
+    2381,
+    70,
+    285,
+    3052,
+    860,
+    9114,
+    753,
+    253,
+    36060,
+    2098,
+    369
+   ],
+   "word_ids": [
+    [
+     4030
+    ],
+    [
+     269,
+     1914
+    ]
+   ],
+   "scores": [
+    -8.2309,
+    -16.9555
+   ]
+  },
+  {
+   "before": "我昨天去了北京。Yesterday I ",
+   "words": [
+    "visited",
+    "visted",
+    "vistied"
+   ],
+   "context_ids": [
+    50281,
+    15367,
+    8841,
+    103,
+    40120,
+    44781,
+    17492,
+    15899,
+    234,
+    5494,
+    107,
+    4340,
+    43688,
+    309
+   ],
+   "word_ids": [
+    [
+     11580
+    ],
+    [
+     362,
+     6136
+    ],
+    [
+     362,
+     382,
+     728
+    ]
+   ],
+   "scores": [
+    -3.7466,
+    -22.5699,
+    -30.8459
+   ]
+  },
+  {
+   "before": "Спасибо! Thank you very ",
+   "words": [
+    "much",
+    "mcuh",
+    "mush"
+   ],
+   "context_ids": [
+    50281,
+    22690,
+    7179,
+    15712,
+    43218,
+    1068,
+    2,
+    11239,
+    368,
+    1077
+   ],
+   "word_ids": [
+    [
+     1199
+    ],
+    [
+     278,
+     68,
+     6968
+    ],
+    [
+     21660
+    ]
+   ],
+   "scores": [
+    -0.0791,
+    -25.2447,
+    -17.7033
+   ]
+  },
+  {
+   "before": "That was so funny 😂😂 I can't ",
+   "words": [
+    "believe",
+    "beleive",
+    "belief"
+   ],
+   "context_ids": [
+    50281,
+    2773,
+    369,
+    594,
+    11755,
+    49042,
+    213,
+    14931,
+    235,
+    213,
+    309,
+    476,
+    626
+   ],
+   "word_ids": [
+    [
+     2868
+    ],
+    [
+     320,
+     282,
+     422
+    ],
+    [
+     9927
+    ]
+   ],
+   "scores": [
+    -3.9243,
+    -18.6659,
+    -13.3852
+   ]
+  },
+  {
+   "before": "Family trip 👨‍👩‍👧‍👦🇨🇦 we are ",
+   "words": [
+    "leaving",
+    "leavign"
+   ],
+   "context_ids": [
+    50281,
+    21276,
+    7408,
+    22692,
+    228,
+    103,
+    325,
+    224,
+    14931,
+    228,
+    104,
+    325,
+    224,
+    14931,
+    228,
+    102,
+    325,
+    224,
+    14931,
+    228,
+    101,
+    14931,
+    218,
+    103,
+    14931,
+    218,
+    101,
+    359,
+    403
+   ],
+   "word_ids": [
+    [
+     6108
+    ],
+    [
+     458,
+     580,
+     525
+    ]
+   ],
+   "scores": [
+    -5.6499,
+    -26.3604
+   ]
+  },
+  {
+   "before": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀 ",
+   "words": [
+    "ok",
+    "okay"
+   ],
+   "context_ids": [
+    50281,
+    235,
+    211,
+    14931,
+    235,
+    211,
+    14931,
+    235,
+    211,
+    14931,
+    235,
+    211,
+    14931,
+    235,
+    211,
+    14931,
+    235,
+    211,
+    14931,
+    235,
+    211,
+    14931,
+    235,
+    211,
+    14931,
+    235,
+    211,
+    14931,
+    235,
+    211,
+    14931,
+    235,
+    211
+   ],
+   "word_ids": [
+    [
+     8718
+    ],
+    [
+     8261
+    ]
+   ],
+   "scores": [
+    -17.8589,
+    -18.3507
+   ]
+  },
+  {
+   "before": "I think they ",
+   "words": [
+    "don't",
+    "dont",
+    "doesn't",
+    "won't"
+   ],
+   "context_ids": [
+    50281,
+    42,
+    1158,
+    597
+   ],
+   "word_ids": [
+    [
+     1053,
+     626
+    ],
+    [
+     13414
+    ],
+    [
+     2506,
+     626
+    ],
+    [
+     1912,
+     626
+    ]
+   ],
+   "scores": [
+    -4.8696,
+    -7.9356,
+    -11.2063,
+    -6.6379
+   ]
+  },
+  {
+   "before": "It is my ",
+   "words": [
+    "sister's",
+    "sisters",
+    "sister’s"
+   ],
+   "context_ids": [
+    50281,
+    1147,
+    310,
+    619
+   ],
+   "word_ids": [
+    [
+     7586,
+     434
+    ],
+    [
+     18903
+    ],
+    [
+     7586,
+     457,
+     84
+    ]
+   ],
+   "scores": [
+    -7.8145,
+    -9.8533,
+    -9.4533
+   ]
+  },
+  {
+   "before": "He typed ",
+   "words": [
+    "qzxvkjwpfhgbnmtrlcds",
+    "something"
+   ],
+   "context_ids": [
+    50281,
+    1328,
+    31632
+   ],
+   "word_ids": [
+    [
+     2805,
+     91,
+     89,
+     87,
+     31169,
+     16471,
+     30550,
+     20773,
+     10602,
+     18609,
+     68,
+     1397
+    ],
+    [
+     1633
+    ]
+   ],
+   "scores": [
+    -92.931,
+    -5.8608
+   ]
+  },
+  {
+   "before": "The city council voted 7-2 on Tuesday to approve a $48.5 million budget for road repairs and new bike lanes. Prime Minister Aroha Parata said her government would not raise income tax before the next election. Shares of Northwind Logistics fell 4.2% in early trading after the company cut its full-year forecast. Researchers at the University of Leeds have developed a battery that charges in under ten minutes, according to a paper published Thursday. Heavy rain is expected across the region from 6 p.m. tonight, and forecasters have issued a flood warning for the River Aire. Oluwaseun Adeyemi scored twice in the second half as Lagos United beat Abuja Rangers 3-1 at the national stadium. ",
+   "words": [
+    "qzxvkjwpfhgbnmtrlcds",
+    "question",
+    "quiz",
+    "quite",
+    "quick",
+    "queue"
+   ],
+   "context_ids": [
+    50281,
+    603,
+    15,
+    473,
+    7675,
+    88,
+    511,
+    328,
+    41260,
+    90,
+    35381,
+    11691,
+    7019,
+    275,
+    253,
+    1273,
+    2716,
+    347,
+    15184,
+    375,
+    1986,
+    7171,
+    26957,
+    6362,
+    29629,
+    495,
+    14,
+    18,
+    387,
+    253,
+    3872,
+    21711,
+    15
+   ],
+   "word_ids": [
+    [
+     2805,
+     91,
+     89,
+     87,
+     31169,
+     16471,
+     30550,
+     20773,
+     10602,
+     18609,
+     68,
+     1397
+    ],
+    [
+     1953
+    ],
+    [
+     39627
+    ],
+    [
+     3240
+    ],
+    [
+     3158
+    ],
+    [
+     15154
+    ]
+   ],
+   "scores": [
+    -99.9232,
+    -18.1498,
+    -16.6518,
+    -17.4503,
+    -19.3914,
+    -18.5631
+   ]
+  },
+  {
+   "before": "The city council voted 7-2 on Tuesday to approve a $48.5 million budget for road repairs and new bike lanes. Prime Minister Aroha Parata said her government would not raise income tax before the next election. Shares of Northwind Logistics fell 4.2% in early trading after the company cut its full-year forecast. Researchers at the University of Leeds have developed a battery that charges in under ten minutes, according to a paper published Thursday. Heavy rain is expected across the region from 6 p.m. tonight, and forecasters have issued a flood warning for the River Aire. Oluwaseun Adeyemi scored twice in the second half as Lagos United beat Abuja Rangers 3-1 at the national stadium. ",
+   "words": [
+    "fpwgmxvgxmfwbqgnzxnhqk",
+    "few"
+   ],
+   "context_ids": [
+    50281,
+    603,
+    15,
+    473,
+    7675,
+    88,
+    511,
+    328,
+    41260,
+    90,
+    35381,
+    11691,
+    7019,
+    275,
+    253,
+    1273,
+    2716,
+    347,
+    15184,
+    375,
+    1986,
+    7171,
+    26957,
+    6362,
+    29629,
+    495,
+    14,
+    18,
+    387,
+    253,
+    3872,
+    21711,
+    15
+   ],
+   "word_ids": [
+    [
+     269,
+     42641,
+     72,
+     26652,
+     46594,
+     89,
+     78,
+     25837,
+     67,
+     82,
+     3757,
+     91,
+     89,
+     23713,
+     82,
+     76
+    ],
+    [
+     1643
+    ]
+   ],
+   "scores": [
+    -110.691,
+    -19.1283
+   ]
+  },
+  {
+   "before": "Line one\n\tindented    line with  spaces\r\nand then ",
+   "words": [
+    "more",
+    "moer"
+   ],
+   "context_ids": [
+    50281,
+    7557,
+    581,
+    187,
+    186,
+    527,
+    8006,
+    50274,
+    1282,
+    342,
+    50276,
+    31748,
+    190,
+    187,
+    395,
+    840
+   ],
+   "word_ids": [
+    [
+     625
+    ],
+    [
+     5497,
+     254
+    ]
+   ],
+   "scores": [
+    -7.5081,
+    -17.4833
+   ]
+  },
+  {
+   "before": "The answer is 42.5% (see https://example.com/a_b?c=d) or ",
+   "words": [
+    "less",
+    "les"
+   ],
+   "context_ids": [
+    50281,
+    510,
+    3662,
+    310,
+    5976,
+    15,
+    22,
+    6,
+    313,
+    2887,
+    5987,
+    1358,
+    11667,
+    15,
+    681,
+    16,
+    66,
+    64,
+    67,
+    32,
+    68,
+    30,
+    69,
+    10,
+    390
+   ],
+   "word_ids": [
+    [
+     1679
+    ],
+    [
+     3293
+    ]
+   ],
+   "scores": [
+    -8.4468,
+    -16.4377
+   ]
+  },
+  {
+   "before": "trailing spaces   ",
+   "words": [
+    "here",
+    "hear"
+   ],
+   "context_ids": [
+    50281,
+    7604,
+    4837,
+    8470
+   ],
+   "word_ids": [
+    [
+     1060
+    ],
+    [
+     4089
+    ]
+   ],
+   "scores": [
+    -7.8309,
+    -16.8174
+   ]
+  },
+  {
+   "before": "x",
+   "words": [
+    "a"
+   ],
+   "context_ids": [
+    50281,
+    89
+   ],
+   "word_ids": [
+    [
+     247
+    ]
+   ],
+   "scores": [
+    -6.4764
+   ]
+  }
+ ]
+}

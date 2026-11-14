@@ -1,0 +1,39 @@
+{
+  "name": "voka-ime",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Voka: an English input method for non-native speakers (TypeScript engine, macOS InputMethodKit app)",
+  "homepage": "https://pili.sh",
+  "repository": "github:pililiw/voka",
+  "author": "pili",
+  "scripts": {
+    "build:dict": "node scripts/build-dictionary.mjs",
+    "test": "vitest run",
+    "build:engine": "node scripts/build-engine-bundle.mjs",
+    "macos:test": "node scripts/build-engine-bundle.mjs && cd macos && swift test --disable-sandbox",
+    "macos:build": "bash macos/scripts/build_app.sh",
+    "macos:install": "bash macos/scripts/install.sh",
+    "macos:restart": "bash macos/scripts/restart.sh",
+    "macos:status": "bash macos/scripts/status.sh",
+    "typecheck": "tsc --noEmit",
+    "macos:package": "bash macos/scripts/package.sh",
+    "eval": "bash eval/run.sh eval/replay.ts && bash eval/run.sh eval/precision.ts && bash eval/scenarios.sh",
+    "readme:hero": "node scripts/build-engine-bundle.mjs && node scripts/readme/hero.mjs"
+  },
+  "dependencies": {
+    "typescript": "^5.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "cmu-pronouncing-dictionary": "^3.0.0",
+    "irregular-plurals": "^4.2.0",
+    "pluralize": "^8.0.0",
+    "vitest": "^5.1.0",
+    "wordnet-db": "^3.1.14"
+  },
+  "license": "MIT AND CC-BY-SA-4.0",
+  "engines": {
+    "node": ">=22"
+  }
+}

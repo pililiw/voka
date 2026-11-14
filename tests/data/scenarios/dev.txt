@@ -1,0 +1,80 @@
+fix: handle null userId in getUserById before querying the database
+feat(auth): add refresh token rotation and reduce session lifetime to 15 minutes
+Bump lodash from 4.17.20 to 4.17.21 to address a prototype pollution advisory.
+This PR refactors src/utils/parse.ts so that malformed input throws a descriptive error instead of returning undefined.
+Steps to reproduce: run npm run build, open http://localhost:3000, and click the Export button twice in a row.
+Expected behavior: the dialog closes. Actual behavior: the app freezes and the console shows a TypeError.
+The retry logic uses exponential backoff, and max_retries defaults to 3 unless overridden in config.yaml.
+Install the CLI with npm install -g example-cli, then run example-cli init to generate a starter project.
+Note that this function is not thread-safe; callers must hold the lock before mutating the cache.
+TODO: remove this workaround once the upstream bug (see issue #1234) has been fixed in v2.4.0.
+Closes #482. Adds a --dry-run flag so users can preview changes without writing to disk.
+Revert "feat: enable experimental parser" because it broke builds on Windows.
+The server listens on port 8080 by default; set HTTP_PORT to change it.
+To squash your commits before merging, run git rebase -i origin/main and mark all but the first as squash.
+We deliberately do not retry on 4xx responses, since those usually indicate a client error rather than a transient failure.
+Use docker logs -f api to follow the logs of the API container in real time.
+This commit fixes an off-by-one error that caused the last element of the array to be skipped.
+Performance: switching from a linear scan to a hash map reduces lookup time from O(n) to O(1).
+The config file is read from ~/.config/tool/config.yaml, falling back to /etc/tool/config.yaml if it doesn't exist.
+Breaking change: the timeout option is now specified in milliseconds, not seconds.
+Thanks to @priya-raman for reporting this and to everyone who tested the release candidate.
+Tested on macOS 14 and Ubuntu 22.04 with Node 20; I haven't tried Windows yet.
+Running the test suite takes about 45s on my laptop (16GB RAM, 8 cores).
+Describe the bug: the progress bar jumps from 10% to 100% when the download is resumed after a network interruption.
+This library has zero runtime dependencies and ships with TypeScript definitions out of the box.
+Don't mutate the input array; return a new one so callers can rely on referential equality.
+The migration adds a nullable column named deleted_at and backfills it in batches of 1,000 rows.
+Please rebase onto main and resolve the conflicts in package.json before requesting another review.
+Docs: clarify that the --force flag skips confirmation prompts and can overwrite existing files.
+Add a CONTRIBUTING.md with instructions for setting up the dev environment, running tests, and submitting patches.
+The linter was complaining about unused imports, so I removed them and reordered the rest alphabetically.
+Why this change? Several admission controllers were rejecting pods that lacked resource limits, so we now set defaults.
+Many integration tests were flaky because they shared a single database; each test now gets its own schema.
+Environment: Python 3.12, PostgreSQL 16, Docker 24.0.7, running on an AWS EC2 t3.medium instance.
+The cache is invalidated whenever a user updates their profile, so stale avatars should no longer appear.
+Heads up: the parseConfig function now returns a Result type, so existing callers need to handle the error case.
+This script is idempotent, so it's safe to run it more than once.
+For local development, copy .env.example to .env and fill in your own API keys; never commit the real file.
+Our CI pipeline runs on GitHub Actions and takes roughly six minutes, including linting, unit tests, and a Docker build.
+The function returns -1 when the key is missing; I'd prefer to return null, but that would be a breaking change.
+Use curl -I https://example.com/health to check whether the service is up without downloading the whole body.
+A better approach might be to debounce the handler by 200ms so we don't fire a request on every keystroke.
+Let the caller decide whether to log the error; the library should never write to stdout on its own.
+Refactor: extract the pagination logic into a helper so the three list endpoints no longer duplicate it.
+Unsubscribing from the event emitter in componentWillUnmount fixes the memory leak reported in #771.
+I'd recommend pinning the Docker base image to a specific digest rather than using the latest tag.
+Added support for dark mode, plus a few accessibility fixes for keyboard navigation and screen readers.
+Open an issue first if you plan a large change; we'd rather discuss the design before you spend a weekend on it.
+The regex is intentionally strict: it rejects addresses like user@localhost, which are valid but rarely useful here.
+Fixes a deadlock that occurred when two goroutines tried to acquire the same mutex in opposite order.
+This is a stopgap until we migrate off the legacy API, which is scheduled for deprecation in Q3 2027.
+If the tests fail with ECONNREFUSED, make sure that the local Redis instance is running on port 6379.
+Tip: run pytest -k "auth and not slow" to execute only the authentication tests that are quick.
+Rename MAX_CONN to MAX_CONNECTIONS for consistency with the rest of the constants in this module.
+The build now produces both ESM and CommonJS bundles; consumers shouldn't need to change anything.
+Implements the algorithm described in the original paper (Chen et al., 2020), with a few practical simplifications.
+Security: validate the Content-Type header and reject uploads larger than 25MB to prevent abuse.
+This repo uses semantic versioning, so a major bump signals breaking changes and a patch bump signals bug fixes only.
+After rebasing, the history looks cleaner, but remember that anyone who has pulled the old branch will need to reset.
+The Dockerfile uses a multi-stage build to keep the final image under 120MB.
+Caveat: on slow connections the first request may time out, which is why the default is 30s instead of 10s.
+Please include logs, your OS version, and the output of node --version when you file a bug report.
+Wrap the call in a try/catch block; the underlying library throws on any non-200 response.
+I saw him merge the change without running the tests, so I added a pre-push hook to prevent that.
+They suggest we use feature flags to ship incomplete work safely behind a toggle.
+We made the build fail on warnings; it was annoying at first, but it has caught several real issues.
+Whoever runs the nightly job should check the status board at https://example.org/status before leaving for the day.
+Initial commit: scaffold the project with Vite, TypeScript, ESLint, and a minimal Jest setup.
+This patch is intentionally small, so it should be easy to review and, if necessary, to revert.
+Release v1.0.0 is here! It includes a rewritten core, a plugin API, and far better error messages.
+Known issue: scrolling is janky on older Android devices with less than 2GB of memory.
+Make the default locale configurable via the LOCALE environment variable instead of hardcoding en-US.
+Use SELECT COUNT(*) sparingly on large tables; an estimate from pg_class is usually good enough for dashboards.
+Removed dead code in src/legacy/helpers.js, including three functions that nobody had called since 2022.
+The webhook handler verifies the signature first; if verification fails, it responds with 401 and logs nothing sensitive.
+Update the changelog with a short note about the new --verbose flag and link to the related pull request.
+Fix the flaky snapshot test by freezing the clock instead of relying on the real system time.
+Document that the SDK requires Node 18 or newer and that older runtimes are no longer tested in CI.
+Add retry-after handling for 429 responses so that clients wait the requested number of seconds before trying again.
+Mention in the README that the cache directory can be changed with the --cache-dir option.

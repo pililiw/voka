@@ -1,0 +1,250 @@
+{
+  "bigrams": {
+    "looking": [
+      [
+        "forward",
+        95
+      ],
+      [
+        "for",
+        78
+      ],
+      [
+        "into",
+        75
+      ]
+    ],
+    "forward": [
+      [
+        "to",
+        96
+      ]
+    ],
+    "let": [
+      [
+        "me",
+        92
+      ],
+      [
+        "us",
+        78
+      ]
+    ],
+    "feel": [
+      [
+        "free",
+        90
+      ]
+    ],
+    "free": [
+      [
+        "to",
+        92
+      ]
+    ],
+    "make": [
+      [
+        "sure",
+        94
+      ],
+      [
+        "sense",
+        85
+      ]
+    ],
+    "makes": [
+      [
+        "sense",
+        95
+      ]
+    ],
+    "in": [
+      [
+        "order",
+        82
+      ],
+      [
+        "addition",
+        78
+      ],
+      [
+        "general",
+        74
+      ],
+      [
+        "particular",
+        74
+      ]
+    ],
+    "order": [
+      [
+        "to",
+        94
+      ]
+    ],
+    "as": [
+      [
+        "soon",
+        88
+      ],
+      [
+        "well",
+        85
+      ]
+    ],
+    "soon": [
+      [
+        "as",
+        95
+      ]
+    ],
+    "at": [
+      [
+        "least",
+        90
+      ],
+      [
+        "first",
+        78
+      ]
+    ],
+    "by": [
+      [
+        "default",
+        92
+      ]
+    ],
+    "for": [
+      [
+        "example",
+        90
+      ],
+      [
+        "instance",
+        82
+      ]
+    ],
+    "thank": [
+      [
+        "you",
+        96
+      ]
+    ],
+    "thanks": [
+      [
+        "for",
+        92
+      ]
+    ],
+    "able": [
+      [
+        "to",
+        96
+      ]
+    ],
+    "supposed": [
+      [
+        "to",
+        95
+      ]
+    ],
+    "according": [
+      [
+        "to",
+        96
+      ]
+    ],
+    "due": [
+      [
+        "to",
+        94
+      ]
+    ],
+    "instead": [
+      [
+        "of",
+        96
+      ]
+    ],
+    "because": [
+      [
+        "of",
+        85
+      ]
+    ],
+    "based": [
+      [
+        "on",
+        95
+      ]
+    ],
+    "depends": [
+      [
+        "on",
+        95
+      ]
+    ],
+    "focus": [
+      [
+        "on",
+        92
+      ]
+    ],
+    "rely": [
+      [
+        "on",
+        92
+      ]
+    ]
+  },
+  "trigrams": {
+    "in order": [
+      [
+        "to",
+        98
+      ]
+    ],
+    "as soon": [
+      [
+        "as",
+        98
+      ]
+    ],
+    "as well": [
+      [
+        "as",
+        95
+      ]
+    ],
+    "looking forward": [
+      [
+        "to",
+        98
+      ]
+    ],
+    "let me": [
+      [
+        "know",
+        98
+      ]
+    ],
+    "feel free": [
+      [
+        "to",
+        98
+      ]
+    ],
+    "keep in": [
+      [
+        "mind",
+        96
+      ]
+    ],
+    "the other": [
+      [
+        "hand",
+        96
+      ]
+    ]
+  }
+}

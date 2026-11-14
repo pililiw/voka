@@ -1,0 +1,22 @@
+#!/bin/bash
+# Register the input source for the user who ran the installer and open the Voka window for them.
+APP="/Library/Input Methods/Voka.app"
+CONSOLE_USER="$(/usr/bin/stat -f %Su /dev/console)"
+
+if [ -n "$CONSOLE_USER" ] && [ "$CONSOLE_USER" != "root" ]; then
+  USER_ID="$(/usr/bin/id -u "$CONSOLE_USER")"
+  # Everything below runs as that user, in their login session: never as root.
+  AS_USER=(/bin/launchctl asuser "$USER_ID" /usr/bin/sudo -u "$CONSOLE_USER")
+
+  # A second instance does not start, so the previous version has to be gone before the new one opens.
+  /usr/bin/pkill -u "$USER_ID" -x VokaIME 2>/dev/null
+  for _ in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20; do
+    /usr/bin/pgrep -u "$USER_ID" -x VokaIME >/dev/null 2>&1 || break
+    /bin/sleep 0.1
+  done
+
+  "${AS_USER[@]}" "$APP/Contents/MacOS/VokaIME" --register-input-source || true
+  # Open the installed copy by its path. If macOS has started it already, this shows its window.
+  "${AS_USER[@]}" /usr/bin/open "$APP" --args --show-window || true
+fi
+exit 0

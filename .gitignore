@@ -1,0 +1,10 @@
+node_modules/
+.devout/
+macos/.build/
+macos/build/
+macos/Resources/engine.js
+scripts/raw/
+.DS_Store
+scripts/lm/instances.jsonl
+.idea/
+.venv/
