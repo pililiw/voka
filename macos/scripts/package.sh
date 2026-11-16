@@ -7,6 +7,7 @@
 #   VOKA_INSTALLER_IDENTITY  "Developer ID Installer: … (TEAMID)"
 #   VOKA_NOTARY_PROFILE      keychain profile created with `xcrun notarytool store-credentials`
 set -euo pipefail
+umask 022
 
 ROOT_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 MACOS_DIR="$ROOT_DIR/macos"
@@ -39,7 +40,7 @@ done
 SIGN_FLAGS=()
 if [ -n "${VOKA_INSTALLER_IDENTITY:-}" ]; then SIGN_FLAGS=(--sign "$VOKA_INSTALLER_IDENTITY" --timestamp); fi
 pkgbuild --root "$STAGE/root" --component-plist "$STAGE/component.plist" --scripts "$STAGE/scripts" \
-  --identifier "$BUNDLE_ID" --version "$VERSION" --install-location / \
+  --identifier "$BUNDLE_ID" --version "$VERSION" --install-location / --ownership recommended \
   ${SIGN_FLAGS[@]+"${SIGN_FLAGS[@]}"} "$PKG"
 # The staged copies must not stay known to LaunchServices.
 LSREGISTER="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister"

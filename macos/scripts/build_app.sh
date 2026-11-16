@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 # Build macos/build/Voka.app (the input method) and macos/build/launcher/Voka.app (its Applications entry).
 #   VOKA_ARCHS          architectures to build, e.g. "arm64 x86_64" (default: this machine's; more than one needs Xcode)
-#   VOKA_SIGN_IDENTITY  code signing identity (default: "-", ad-hoc). A Developer ID identity also
-#                       turns on the hardened runtime and a secure timestamp, as notarization requires.
+#   VOKA_SIGN_IDENTITY  code signing identity (default: "-", ad-hoc). Every build is signed for the
+#                       hardened runtime; a Developer ID identity also gets a secure timestamp, as
+#                       notarization requires.
 set -euo pipefail
+umask 022
 
 ROOT_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 MACOS_DIR="$ROOT_DIR/macos"
@@ -16,15 +18,22 @@ echo "==> Bundling the engine"
 (cd "$ROOT_DIR" && node scripts/build-engine-bundle.mjs)
 
 echo "==> Compiling"
-ARCH_FLAGS=()
-for arch in ${VOKA_ARCHS:-}; do ARCH_FLAGS+=(--arch "$arch"); done
-(cd "$MACOS_DIR" && swift build --disable-sandbox -c release ${ARCH_FLAGS[@]+"${ARCH_FLAGS[@]}"})
-BIN_PATH="$(cd "$MACOS_DIR" && swift build --disable-sandbox -c release ${ARCH_FLAGS[@]+"${ARCH_FLAGS[@]}"} --show-bin-path)/VokaIME"
+# The programs must not name the folders they were built in: source paths are recorded relative to
+# the repository (the last option keeps the linker quiet about the module cache, whose path is
+# rewritten too), and the symbol tables are stripped below.
+BUILD_FLAGS=(--disable-sandbox -c release
+  -Xswiftc -file-prefix-map -Xswiftc "$ROOT_DIR=."
+  -Xswiftc -enable-upcoming-feature -Xswiftc ConciseMagicFile
+  -Xswiftc -Xfrontend -Xswiftc -no-clang-module-breadcrumbs)
+for arch in ${VOKA_ARCHS:-}; do BUILD_FLAGS+=(--arch "$arch"); done
+(cd "$MACOS_DIR" && swift build "${BUILD_FLAGS[@]}")
+BIN_PATH="$(cd "$MACOS_DIR" && swift build "${BUILD_FLAGS[@]}" --show-bin-path)/VokaIME"
 
 echo "==> Assembling $APP_BUNDLE"
 rm -rf "$APP_BUNDLE"
 mkdir -p "$APP_BUNDLE/Contents/MacOS" "$RESOURCES"
 cp "$BIN_PATH" "$APP_BUNDLE/Contents/MacOS/VokaIME"
+strip -S -x "$APP_BUNDLE/Contents/MacOS/VokaIME"
 cp "$MACOS_DIR/Resources/Info.plist" "$APP_BUNDLE/Contents/Info.plist"
 cp "$MACOS_DIR/Resources/engine.js" "$ROOT_DIR/data/dict.json" "$RESOURCES/"
 # The language model is compiled for Core ML; the app loads lm.mlmodelc.
@@ -42,9 +51,12 @@ for lang in en zh_CN; do
     > "$RESOURCES/$lang.lproj/InfoPlist.strings"
 done
 
+xattr -cr "$APP_BUNDLE"
+chmod -R u+rwX,go+rX,go-w "$APP_BUNDLE"
+
 echo "==> Signing ($SIGN_IDENTITY)"
-SIGN_FLAGS=(--force --sign "$SIGN_IDENTITY" --entitlements "$MACOS_DIR/Resources/Voka.entitlements")
-if [ "$SIGN_IDENTITY" != "-" ]; then SIGN_FLAGS+=(--options runtime --timestamp); fi
+SIGN_FLAGS=(--force --sign "$SIGN_IDENTITY" --options runtime --entitlements "$MACOS_DIR/Resources/Voka.entitlements")
+if [ "$SIGN_IDENTITY" != "-" ]; then SIGN_FLAGS+=(--timestamp); fi
 codesign "${SIGN_FLAGS[@]}" "$APP_BUNDLE"
 codesign --verify --deep --strict "$APP_BUNDLE"
 "$APP_BUNDLE/Contents/MacOS/VokaIME" --validate-bundle
@@ -59,12 +71,21 @@ echo "==> Assembling $LAUNCHER_BUNDLE"
 rm -rf "$LAUNCHER_BUNDLE"
 mkdir -p "$LAUNCHER_BUNDLE/Contents/MacOS" "$LAUNCHER_BUNDLE/Contents/Resources"
 cp "$(dirname "$BIN_PATH")/VokaLauncher" "$LAUNCHER_BUNDLE/Contents/MacOS/Voka"
+strip -S -x "$LAUNCHER_BUNDLE/Contents/MacOS/Voka"
 cp "$MACOS_DIR/Resources/Launcher-Info.plist" "$LAUNCHER_BUNDLE/Contents/Info.plist"
 cp "$MACOS_DIR/Resources/Icons/Voka.icns" "$LAUNCHER_BUNDLE/Contents/Resources/"
-LAUNCHER_SIGN_FLAGS=(--force --sign "$SIGN_IDENTITY")
-if [ "$SIGN_IDENTITY" != "-" ]; then LAUNCHER_SIGN_FLAGS+=(--options runtime --timestamp); fi
+xattr -cr "$LAUNCHER_BUNDLE"
+chmod -R u+rwX,go+rX,go-w "$LAUNCHER_BUNDLE"
+LAUNCHER_SIGN_FLAGS=(--force --sign "$SIGN_IDENTITY" --options runtime)
+if [ "$SIGN_IDENTITY" != "-" ]; then LAUNCHER_SIGN_FLAGS+=(--timestamp); fi
 codesign "${LAUNCHER_SIGN_FLAGS[@]}" "$LAUNCHER_BUNDLE"
 codesign --verify --deep --strict "$LAUNCHER_BUNDLE"
 if [ -x "$LSREGISTER" ]; then "$LSREGISTER" -u "$LAUNCHER_BUNDLE" >/dev/null 2>&1 || true; fi
+
+if grep -rqF -e "$ROOT_DIR" -e "$HOME" "$APP_BUNDLE" "$LAUNCHER_BUNDLE"; then
+  echo "error: the built bundles name a folder of this machine:" >&2
+  grep -rlF -e "$ROOT_DIR" -e "$HOME" "$APP_BUNDLE" "$LAUNCHER_BUNDLE" >&2
+  exit 1
+fi
 
 echo "Built $APP_BUNDLE"
