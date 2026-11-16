@@ -3,13 +3,26 @@ name: CI
 on:
   push:
     branches: [main]
+    paths-ignore: ['**/*.md', 'docs/**', 'LICENSE']
   pull_request:
+    paths-ignore: ['**/*.md', 'docs/**', 'LICENSE']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  test:
-    runs-on: macos-15
+  engine:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -21,6 +34,22 @@ jobs:
         run: bash eval/run.sh eval/replay.ts
       - name: Bundle parity (Node)
         run: npm run build:engine && node eval/host-smoke.cjs
+
+  macos:
+    needs: engine
+    if: ${{ !github.event.repository.private || github.event_name != 'pull_request' }}
+    runs-on: macos-15
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build:engine
       - name: Swift tests (JavaScriptCore parity)
         run: cd macos && swift test
       - name: Build the app
