@@ -101,7 +101,7 @@ source changes.
 1. Set the version in `package.json` and the two `Info.plist` files in `macos/Resources` (also raise
    `CFBundleVersion`).
 2. `npm test`, `npm run macos:test`, `npm run eval`.
-3. `npm run macos:package` builds a universal `Voka-<version>.pkg`. With `VOKA_SIGN_IDENTITY`,
+3. `npm run macos:package` builds a universal `Voka-<version>-macos.pkg`. With `VOKA_SIGN_IDENTITY`,
    `VOKA_INSTALLER_IDENTITY` and `VOKA_NOTARY_PROFILE` set (see the top of
    `macos/scripts/package.sh`) it is signed with a Developer ID, notarized and stapled.
 4. Install the package on a clean user account and go through the Voka window once.

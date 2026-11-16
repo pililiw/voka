@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build the release installer: macos/build/Voka-<version>.pkg (universal; installs the input
+# Build the release installer: macos/build/Voka-<version>-macos.pkg (universal; installs the input
 # method to /Library/Input Methods and its entry to /Applications).
 #
 # Without credentials the result is an unsigned package for local testing. For a public release set:
@@ -18,7 +18,7 @@ VOKA_ARCHS="${VOKA_ARCHS:-arm64 x86_64}" bash "$MACOS_DIR/scripts/build_app.sh"
 
 VERSION="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$APP_BUNDLE/Contents/Info.plist")"
 BUNDLE_ID="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP_BUNDLE/Contents/Info.plist")"
-PKG="$BUILD_DIR/Voka-$VERSION.pkg"
+PKG="$BUILD_DIR/Voka-$VERSION-macos.pkg"
 STAGE="$BUILD_DIR/pkg"
 
 rm -rf "$STAGE" "$PKG"
