@@ -78,6 +78,9 @@ public final class JSEngine {
     /// Why loading failed, or the last JavaScript exception; empty when all is well.
     public private(set) var lastError = ""
 
+    /// The name the engine's script goes by in JavaScript stack traces.
+    private static let sourceURL = URL(fileURLWithPath: "/voka/engine.js")
+
     private var context: JSContext?
     private var host: JSValue?
     private let decoder = JSONDecoder()
@@ -107,7 +110,9 @@ public final class JSEngine {
             self?.lastError = "\(exception?.toString() ?? "unknown JS exception")\n\(stack)"
         }
         lastError = ""
-        ctx.evaluateScript(script, withSourceURL: scriptURL)
+        // A fixed name, not the file's location: a stack trace then says where in the engine an error
+        // happened without naming the user's home directory.
+        ctx.evaluateScript(script, withSourceURL: Self.sourceURL)
         guard lastError.isEmpty, let api = ctx.objectForKeyedSubscript("Voka"), api.isObject else {
             if lastError.isEmpty { lastError = "engine.js did not define Voka" }
             return false
@@ -183,7 +188,9 @@ public final class JSEngine {
         do {
             return try decoder.decode(HostView.self, from: Data(text.utf8))
         } catch {
-            lastError = "\(method): cannot decode \(text.prefix(200))"
+            // The result holds what is being typed (the marked text, the commit, the candidates): the
+            // error must not, because it is shown in the input menu and may be logged.
+            lastError = "\(method): cannot decode the engine's result (\(text.utf16.count) UTF-16 units)"
             return nil
         }
     }

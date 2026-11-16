@@ -85,6 +85,15 @@ final class LanguageModelTests: XCTestCase {
         XCTAssertEqual(tokenizer.id(of: "[CLS]"), fixtures.cases.first?.context_ids.first)
     }
 
+    func testForgettingTheRememberedWordsDoesNotChangeTheTokens() throws {
+        let tokenizer = try BPETokenizer(contentsOf: Self.tokenizerURL)
+        for item in try fixtures().tokenizer.prefix(10) {
+            XCTAssertEqual(tokenizer.encode(item.text), item.ids)
+            tokenizer.forget()
+            XCTAssertEqual(tokenizer.encode(item.text), item.ids, "text: \(item.text.debugDescription)")
+        }
+    }
+
     func testTokenizerAcceptsAnyUnicodeText() throws {
         let tokenizer = try BPETokenizer(contentsOf: Self.tokenizerURL)
         var generator = SystemRandomNumberGenerator()

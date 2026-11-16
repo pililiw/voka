@@ -33,7 +33,7 @@ enum InputSourceCommands {
                 && $0["enabled"] as? Bool == true && $0["selectable"] as? Bool == true
         }
         var report: [String: Any] = [
-            "bundlePath": bundle.bundlePath, "bundleID": bundleID, "sourceID": sourceID,
+            "bundlePath": PathPrivacy.redactingHome(bundle.bundlePath), "bundleID": bundleID, "sourceID": sourceID,
             "version": bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "",
             "build": bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "",
             "ready": ready, "currentSourceID": currentID() ?? "", "sources": entries
@@ -69,13 +69,22 @@ enum InputSourceCommands {
         } else {
             errors.append("InputMethodServerControllerClass is not linked into this executable")
         }
+        // The engine has to start in the bundle as it is signed: under the hardened runtime, with the
+        // entitlements this build has.
+        if let script = bundle.url(forResource: "engine", withExtension: "js"),
+           let dict = bundle.url(forResource: "dict", withExtension: "json") {
+            let engine = JSEngine()
+            if !engine.load(scriptURL: script, dictURL: dict) {
+                errors.append("The engine does not start: \(SharedRuntime.firstLine(engine.lastError))")
+            }
+        }
         for (name, ext) in [("engine", "js"), ("dict", "json"), ("lm", "mlmodelc"), ("lm-tokenizer", "json"),
                             ("Voka", "icns"), ("MenuIcon", "pdf"), ("THIRD_PARTY_NOTICES", "md")] {
             if bundle.url(forResource: name, withExtension: ext) == nil {
                 errors.append("Missing resource: \(name).\(ext)")
             }
         }
-        output(["bundleValid": errors.isEmpty, "errors": errors, "bundlePath": bundle.bundlePath])
+        output(["bundleValid": errors.isEmpty, "errors": errors, "bundlePath": PathPrivacy.redactingHome(bundle.bundlePath)])
         return errors.isEmpty ? 0 : 1
     }
 

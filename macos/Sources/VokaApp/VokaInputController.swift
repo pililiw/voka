@@ -97,6 +97,20 @@ enum SharedRuntime {
         return "Voka \(version) · \(Strings.current.passingThrough(firstLine(js.lastError)))"
     }
 
+    /// The state of the engine and of the model in fixed words. It quotes no error, so it is safe to log.
+    static var logStatus: String {
+        let engine = js.isReady ? "ready" : "unavailable"
+        let model: String
+        switch LanguageModel.shared.state {
+        case .notLoaded: model = "not loaded"
+        case .loading: model = "loading"
+        case .ready: model = "ready"
+        case .tooSlow: model = "too slow"
+        case .failed: model = "failed"
+        }
+        return "engine \(engine), model \(model)"
+    }
+
     static func firstLine(_ text: String) -> String {
         String((text.split(separator: "\n").first ?? "unknown error").prefix(80))
     }
@@ -126,6 +140,8 @@ public final class VokaInputController: IMKInputController {
 
         CandidateWindowController.shared.onSelectCandidate = { [weak self] idx in
             guard let self = self, let client = self.lastClient else { return }
+            // Secure Event Input may have started since the candidates were shown: read nothing.
+            guard !IsSecureEventInputEnabled() else { return self.flushComposition(to: client) }
             let context = self.readContext(client: client)
             let raw = self.session.preedit
             let view = self.session.pick(idx, context: context)
@@ -134,6 +150,7 @@ public final class VokaInputController: IMKInputController {
 
         CandidateWindowController.shared.onRestoreCorrection = { [weak self] in
             guard let self = self, let client = self.lastClient else { return }
+            guard !IsSecureEventInputEnabled() else { return self.flushComposition(to: client) }
             let context = self.readContext(client: client)
             guard context.selection.location == self.correctionAnchor, !context.hasSelection else {
                 hideCandidates()
@@ -147,6 +164,8 @@ public final class VokaInputController: IMKInputController {
 
     override public func deactivateServer(_ sender: Any!) {
         flushComposition(to: sender as? IMKTextInput)
+        // The user left this text: what was read around the caret there is not kept.
+        LanguageModel.shared.forgetContext()
         super.deactivateServer(sender)
     }
 
@@ -223,8 +242,10 @@ public final class VokaInputController: IMKInputController {
         // or Cmd / Ctrl shortcuts: keep what was typed and step aside.
         let flags = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
         let isShortcut = flags.contains(.command) || flags.contains(.control)
-        if IsSecureEventInputEnabled() || isPassthroughApp || isShortcut {
+        let isSecureInput = IsSecureEventInputEnabled()
+        if isSecureInput || isPassthroughApp || isShortcut {
             flushComposition(to: client)
+            if isSecureInput { LanguageModel.shared.forgetContext() }
             return false
         }
 

@@ -136,6 +136,9 @@ final class BPETokenizer {
         self.ids = ids
     }
 
+    /// Drop the words remembered from earlier calls.
+    func forget() { cache.removeAll(keepingCapacity: true) }
+
     /// The id of a token given as text, e.g. a special token.
     func id(of token: String) -> Int? { ids[token] }
 
@@ -377,6 +380,19 @@ public final class LanguageModel: CandidateScorer {
             self.current = .notLoaded
             self.latencies = []
             self.lock.unlock()
+        }
+    }
+
+    /// Drop what is remembered of the text that was scored: the last context and the tokenizer's
+    /// words. They only save work while the user stays in one place; when the user leaves it, the
+    /// text that was near the caret there should not stay in memory. Returns at once: the work is
+    /// done in the background.
+    public func forgetContext() {
+        queue.async {
+            self.predicting.lock()
+            self.cachedContext = nil
+            self.tokenizer?.forget()
+            self.predicting.unlock()
         }
     }
 

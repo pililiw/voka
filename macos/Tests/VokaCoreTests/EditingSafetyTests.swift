@@ -81,6 +81,40 @@ final class EditingSafetyTests: XCTestCase {
         XCTAssertTrue(failure.passThrough)
         XCTAssertEqual(session.preedit, "")
         XCTAssertFalse(session.key(KeyInput(key: "c"), context: c).handled)
+        // The reason is shown in the input menu and may be logged: it names the call, and quotes
+        // nothing of what the engine returned (that is what was being typed).
+        let reason = try XCTUnwrap(session.failureReason)
+        XCTAssertTrue(reason.hasPrefix("key:"), reason)
+        XCTAssertFalse(reason.contains("invalid JSON"), reason)
+    }
+
+    func testEngineStackTracesDoNotNameTheScriptLocation() throws {
+        let dir = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: dir) }
+        let scriptURL = dir.appendingPathComponent("engine.js")
+        let dictURL = dir.appendingPathComponent("dict.json")
+        try "function fail() { throw new Error('broken'); }\nfail();".write(to: scriptURL, atomically: true, encoding: .utf8)
+        try "{}".write(to: dictURL, atomically: true, encoding: .utf8)
+        let engine = JSEngine()
+        XCTAssertFalse(engine.load(scriptURL: scriptURL, dictURL: dictURL))
+        XCTAssertTrue(engine.lastError.contains("broken"), engine.lastError)
+        XCTAssertFalse(engine.lastError.contains(dir.lastPathComponent), engine.lastError)
+    }
+
+    func testHomeDirectoryIsWrittenAsTilde() {
+        let home = "/Users/al"
+        XCTAssertEqual(PathPrivacy.redactingHome("/Users/al/Library/Input Methods/Voka.app", home: home),
+                       "~/Library/Input Methods/Voka.app")
+        XCTAssertEqual(PathPrivacy.redactingHome("/Users/al", home: home), "~")
+        XCTAssertEqual(PathPrivacy.redactingHome("not found at /Users/al/a.js (file:///Users/al/b.js:1:2)", home: home),
+                       "not found at ~/a.js (file://~/b.js:1:2)")
+        // Another account whose name starts the same way is not this home directory.
+        XCTAssertEqual(PathPrivacy.redactingHome("/Users/alice/Library", home: home), "/Users/alice/Library")
+        XCTAssertEqual(PathPrivacy.redactingHome("/Library/Input Methods/Voka.app", home: home),
+                       "/Library/Input Methods/Voka.app")
+        XCTAssertEqual(PathPrivacy.redactingHome("/Library/x", home: "/"), "/Library/x")
+        XCTAssertEqual(PathPrivacy.redactingHome("", home: home), "")
     }
 
     func testFlushFailureAlsoKeepsTheRawComposition() throws {
