@@ -32,6 +32,8 @@ struct StringTable {
     let manualStep3: String
     let openKeyboardSettings: String
     let ready: String
+    let needsLogin: String
+    let needsLoginDetail: String
     let howToSwitch: String
     let switchToVoka: String
 
@@ -89,6 +91,8 @@ extension StringTable {
         manualStep3: "Choose Allow when macOS asks.",
         openKeyboardSettings: "Open Keyboard Settings",
         ready: "Voka is ready",
+        needsLogin: "Add Voka again to finish",
+        needsLoginDetail: "Voka was removed and installed again while it was in your input sources, so the input menu does not have it. In Keyboard settings, remove Voka from Text Input and add it again. If Voka is not in that list, log out and back in instead.",
         howToSwitch: "Choose Voka from the input menu in the menu bar. Control-Space switches between your last two input sources.",
         switchToVoka: "Switch to Voka",
 
@@ -142,6 +146,8 @@ extension StringTable {
         manualStep3: "macOS 询问时选择“允许”。",
         openKeyboardSettings: "打开键盘设置",
         ready: "Voka 已就绪",
+        needsLogin: "重新添加 Voka 即可完成",
+        needsLoginDetail: "Voka 在输入法列表中时被移除后又重新安装，所以输入法菜单里没有它。请在键盘设置的「文字输入」中移除 Voka 后再添加一次；如果列表里没有 Voka，请注销并重新登录。",
         howToSwitch: "在菜单栏的输入法菜单中选择 Voka。按 Control-空格 可在最近使用的两个输入法之间切换。",
         switchToVoka: "切换到 Voka",
 

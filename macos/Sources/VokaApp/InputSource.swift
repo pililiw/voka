@@ -1,3 +1,4 @@
+import ApplicationServices
 import Carbon
 import Foundation
 
@@ -5,6 +6,11 @@ import Foundation
 enum InputSource {
     enum State: Equatable {
         case notEnabled
+        /// macOS reports the source as enabled, but this login session's input menu does not have it.
+        /// It happens when Voka is removed while it is enabled and installed again: the session drops
+        /// it, the user's permission stays. Removing and adding it in System Settings, or a new login
+        /// session, puts it back in the menu; a program cannot.
+        case needsLogin
         case enabled(selected: Bool)
     }
 
@@ -43,7 +49,33 @@ enum InputSource {
 
     static func state(_ bundle: Bundle = .main) -> State {
         guard let source = own(bundle), flag(source, kTISPropertyInputSourceIsEnabled) else { return .notEnabled }
+        if let bundleID = bundle.bundleIdentifier, let menu = menuList(), !menu.isEmpty, !isListed(bundleID, in: menu) {
+            return .needsLogin
+        }
         return .enabled(selected: flag(source, kTISPropertyInputSourceIsSelected))
+    }
+
+    /// The input sources of the input menu, in menu order, as macOS publishes them for the menu and
+    /// System Settings: a named pasteboard of the login session, not the clipboard. Nil when it cannot
+    /// be read; the enabled flag is then all there is to go by.
+    static func menuList() -> [[String: Any]]? {
+        var board: Pasteboard?
+        guard PasteboardCreate("AppleInputSourcesInUIOrderPasteboard" as CFString, &board) == noErr,
+              let board else { return nil }
+        PasteboardSynchronize(board)
+        var count = 0
+        guard PasteboardGetItemCount(board, &count) == noErr, count > 0 else { return nil }
+        var item: PasteboardItemID?
+        guard PasteboardGetItemIdentifier(board, 1, &item) == noErr, let item else { return nil }
+        var data: CFData?
+        guard PasteboardCopyItemFlavorData(board, item, "AppleInputSourcesInUIOrderFlavor" as CFString, &data) == noErr,
+              let data = data as Data? else { return nil }
+        return (try? PropertyListSerialization.propertyList(from: data, format: nil)) as? [[String: Any]]
+    }
+
+    /// Is the input method of this bundle in a list of input sources such as `menuList()`?
+    static func isListed(_ bundleID: String, in list: [[String: Any]]) -> Bool {
+        list.contains { $0["Bundle ID"] as? String == bundleID && $0["InputSourceKind"] as? String == "Keyboard Input Method" }
     }
 
     /// Ask the system to add the source to the user's input sources, registering the bundle first when
@@ -61,7 +93,8 @@ enum InputSource {
     /// Make the source the current one. It has to be enabled.
     @discardableResult
     static func select(_ bundle: Bundle = .main) -> OSStatus {
-        guard let source = own(bundle), flag(source, kTISPropertyInputSourceIsEnabled) else { return OSStatus(paramErr) }
+        // Selecting a source the menu does not have leaves the menu showing another source as current.
+        guard case .enabled = state(bundle), let source = own(bundle) else { return OSStatus(paramErr) }
         return TISSelectInputSource(source)
     }
 }

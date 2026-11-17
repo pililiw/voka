@@ -70,7 +70,8 @@ final class VokaApplicationDelegate: NSObject, NSApplicationDelegate {
             VokaWindowController.shared.show(reason: "first run")
         } else if CommandLine.arguments.contains("--show-window") {
             VokaWindowController.shared.show(reason: "--show-window")
-        } else if InputSource.state() == .notEnabled {
+        } else if case .enabled = InputSource.state() {
+        } else {
             VokaWindowController.shared.show(reason: "not enabled")
         }
     }

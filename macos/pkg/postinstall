@@ -3,6 +3,10 @@
 APP="/Library/Input Methods/Voka.app"
 CONSOLE_USER="$(/usr/bin/stat -f %Su /dev/console)"
 
+# For the whole system first: this updates the list System Settings offers to add from, which would
+# otherwise not have Voka until the next login.
+"$APP/Contents/MacOS/VokaIME" --register-input-source >/dev/null || true
+
 if [ -n "$CONSOLE_USER" ] && [ "$CONSOLE_USER" != "root" ]; then
   USER_ID="$(/usr/bin/id -u "$CONSOLE_USER")"
   # Everything below runs as that user, in their login session: never as root.

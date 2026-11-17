@@ -146,14 +146,23 @@ struct VokaWindowView: View {
                                 Text(step.element).fixedSize(horizontal: false, vertical: true)
                             }
                         }
-                        Button(strings.openKeyboardSettings) {
-                            if let url = URL(string: "x-apple.systempreferences:com.apple.Keyboard-Settings.extension") {
-                                NSWorkspace.shared.open(url)
-                            }
-                        }
+                        Button(strings.openKeyboardSettings) { Self.openKeyboardSettings() }
                         .padding(.top, 4)
                     }
                     .padding(.top, 4)
+                }
+            }
+        case .needsLogin:
+            HStack(alignment: .top, spacing: 10) {
+                Image(systemName: "arrow.clockwise.circle.fill")
+                    .font(.title2)
+                    .foregroundStyle(.orange)
+                    .accessibilityHidden(true)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(strings.needsLogin).font(.headline)
+                    detail(strings.needsLoginDetail)
+                    Button(strings.openKeyboardSettings) { Self.openKeyboardSettings() }
+                        .padding(.top, 4)
                 }
             }
         case .enabled(let selected):
@@ -171,6 +180,12 @@ struct VokaWindowView: View {
                     }
                 }
             }
+        }
+    }
+
+    private static func openKeyboardSettings() {
+        if let url = URL(string: "x-apple.systempreferences:com.apple.Keyboard-Settings.extension") {
+            NSWorkspace.shared.open(url)
         }
     }
 
@@ -339,7 +354,7 @@ final class VokaWindowController: NSObject, NSWindowDelegate {
 }
 
 #if DEBUG
-/// Debug builds only: `VokaIME --preview-window[=not-enabled|manual|enabled|selected|acknowledgements]` shows the
+/// Debug builds only: `VokaIME --preview-window[=not-enabled|manual|needs-login|enabled|selected|acknowledgements]` shows the
 /// window with a stand-in for the input source, so every set-up state can be looked at without
 /// changing the system's input sources. `--snapshot <file.png>` writes the window's content to a
 /// file and exits instead; `--dark` uses the dark appearance. Neither starts an input method server: this returns before one is
@@ -352,6 +367,7 @@ enum WindowPreview {
         var state: InputSource.State
         switch name {
         case "enabled": state = .enabled(selected: false)
+        case "needs-login": state = .needsLogin
         case "selected": state = .enabled(selected: true)
         default: state = .notEnabled
         }

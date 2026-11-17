@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# Remove Voka. Remove it from System Settings > Keyboard > Text Input first.
+# Remove Voka. It has to be removed from System Settings > Keyboard > Text Input first: an input
+# method that is deleted while it is enabled stays half-enabled, and installing it again then needs a
+# new login before the input menu has it.
 set -euo pipefail
 
 INPUT_METHOD_ID=sh.pili.inputmethod.Voka
@@ -14,6 +16,25 @@ is_voka() { [ -d "$1" ] && [ "$(bundle_id "$1")" = "$2" ]; }
 report_other() {
   if [ -e "$1" ] && ! is_voka "$1" "$2"; then echo "Left alone, not Voka: $1" >&2; fi
 }
+
+for app in "$HOME/Library/Input Methods/Voka.app" "/Library/Input Methods/Voka.app"; do
+  is_voka "$app" "$INPUT_METHOD_ID" || continue
+  status="$("$app/Contents/MacOS/VokaIME" --input-source-status 2>/dev/null || true)"
+  if grep -q '"enabled":true' <<<"$status"; then
+    if grep -q '"inMenu":false' <<<"$status"; then
+      echo "The input menu does not have Voka, so it cannot be removed as it is." >&2
+      echo "Remove Voka in System Settings > Keyboard > Text Input > Edit… if it is listed there," >&2
+      echo "otherwise log out and back in first. Then run this script again." >&2
+      open "x-apple.systempreferences:com.apple.Keyboard-Settings.extension" 2>/dev/null || true
+      exit 1
+    fi
+    echo "Voka is still in your input sources. Remove it first:" >&2
+    echo "  System Settings > Keyboard > Text Input > Edit…, select Voka, click −." >&2
+    echo "Then run this script again." >&2
+    open "x-apple.systempreferences:com.apple.Keyboard-Settings.extension" 2>/dev/null || true
+    exit 1
+  fi
+done
 
 pkill -u "$(id -u)" -x VokaIME 2>/dev/null || true
 
@@ -37,4 +58,4 @@ if [ "${#SYSTEM_COPIES[@]}" -gt 0 ]; then
 fi
 
 defaults delete "$INPUT_METHOD_ID" >/dev/null 2>&1 || true
-echo "Voka removed. Log out and back in to clear it from the input menu."
+echo "Voka removed."

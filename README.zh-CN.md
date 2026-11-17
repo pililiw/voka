@@ -117,8 +117,8 @@
 <details>
 <summary>卸载</summary>
 
-先在「文字输入」列表里移除 Voka，在你克隆的仓库里运行 `macos/scripts/uninstall.sh`，然后注销一次。
-Voka 的三项设置可以用 `defaults delete sh.pili.inputmethod.Voka` 清除。
+先在「文字输入」列表里移除 Voka，再运行 [`macos/scripts/uninstall.sh`](macos/scripts/uninstall.sh)（在仓库里运行，或单独下载这个脚本）。
+Voka 还在列表里时脚本会停下。
 
 </details>
 

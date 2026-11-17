@@ -36,7 +36,8 @@ enum InputSourceCommands {
             "bundlePath": PathPrivacy.redactingHome(bundle.bundlePath), "bundleID": bundleID, "sourceID": sourceID,
             "version": bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "",
             "build": bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "",
-            "ready": ready, "currentSourceID": currentID() ?? "", "sources": entries
+            "ready": ready, "inMenu": InputSource.menuList().map { InputSource.isListed(bundleID, in: $0) as Any } ?? NSNull(),
+            "currentSourceID": currentID() ?? "", "sources": entries
         ]
         if let result = result { report["result"] = result }
         output(report)
@@ -118,8 +119,11 @@ enum InputSourceCommands {
         let sourceID = bundle.object(forInfoDictionaryKey: "TISInputSourceID") as? String ?? bundleID
         let source = InputSource.sources(bundleID).first { InputSource.string($0, kTISPropertyInputSourceID) == sourceID }
         if command == "--register-input-source" {
-            // A valid, selectable source is not registered again.
-            if let source = source, InputSource.string(source, kTISPropertyBundleID) == bundleID,
+            // A valid, selectable source is not registered again for the user. Run as root (the
+            // installer does), registering also rebuilds the input source cache of the whole system,
+            // which System Settings lists the sources it can add from: without it, Voka is missing
+            // from that list until the next login.
+            if getuid() != 0, let source = source, InputSource.string(source, kTISPropertyBundleID) == bundleID,
                InputSource.flag(source, kTISPropertyInputSourceIsSelectCapable) {
                 status(bundle, result: noErr)
                 return 0

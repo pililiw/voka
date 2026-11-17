@@ -120,9 +120,8 @@ and back in once.
 <details>
 <summary>Uninstall</summary>
 
-Remove Voka from the Text Input list, run `macos/scripts/uninstall.sh` in your copy of the repository,
-and log out once. Voka's three settings can be removed with
-`defaults delete sh.pili.inputmethod.Voka`.
+Remove Voka from the Text Input list, then run [`macos/scripts/uninstall.sh`](macos/scripts/uninstall.sh),
+from the repository or downloaded on its own. It stops if Voka is still in the list.
 
 </details>
 

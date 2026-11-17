@@ -171,6 +171,17 @@ final class SettingsTests: XCTestCase {
         XCTAssertFalse(setup.showsManualSteps)
     }
 
+    func testTheInputMenuListIsMatchedByBundleAndKind() {
+        let id = "sh.pili.inputmethod.Voka"
+        let menu: [[String: Any]] = [
+            ["InputSourceKind": "Keyboard Layout", "KeyboardLayout ID": 0, "KeyboardLayout Name": "U.S."],
+            ["Bundle ID": "com.apple.inputmethod.SCIM", "InputSourceKind": "Keyboard Input Method"],
+        ]
+        XCTAssertFalse(InputSource.isListed(id, in: menu))
+        XCTAssertFalse(InputSource.isListed(id, in: menu + [["Bundle ID": id, "InputSourceKind": "Input Mode"]]))
+        XCTAssertTrue(InputSource.isListed(id, in: menu + [["Bundle ID": id, "InputSourceKind": "Keyboard Input Method"]]))
+    }
+
     func testAcknowledgementsAreParsedForTheWindow() {
         let blocks = Acknowledgements.parse("""
         # Title
