@@ -717,6 +717,33 @@ const sortedWords = Array.from(wordFreq.entries())
   .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
   .slice(0, 35200);
 
+// A verb takes the regular endings. Where a form occurs in text it is an entry next to its verb, so that
+// it is completed and explained like the verb itself (`conforming`, `sifted`), however rare the form is.
+// Of the two spellings of -ed and -ing, with and without a doubled consonant, the one the counts
+// prefer is the word.
+const regularFormOf = new Map();
+{
+  const listed = new Set(sortedWords.map(([w]) => w));
+  for (const [w] of sortedWords) {
+    if (w.length < 3 || irregularVerbs.has(w)) continue;
+    if (!((posMaskMap.get(w) ?? 0) & FLAG_POS_VERB) && !wnVerb.has(w)) continue;
+    const forms = regularVerbForms(w);
+    // A noun with a plural of its own keeps it: `leafs` is first of all a wrong `leaves`.
+    const ownPlural = irregularPlurals.get(w);
+    const takesS = !ownPlural || ownPlural.toLowerCase() === forms.s;
+    for (const spellings of [takesS ? [forms.s] : [], forms.ed, forms.ing]) {
+      if (spellings.length === 0) continue;
+      const best = spellings.reduce((x, y) => ((wordCount.get(y) ?? 0) > (wordCount.get(x) ?? 0) ? y : x));
+      if (!wordCount.has(best) || listed.has(best) || regularFormOf.has(best)) continue;
+      regularFormOf.set(best, w);
+    }
+  }
+  for (const form of regularFormOf.keys()) {
+    const count = wordCount.get(form);
+    sortedWords.push([form, Math.min(995, Math.max(240, Math.round(115 * Math.log10(count + 1) + 185)))]);
+  }
+}
+
 const lexiconWordSet = new Set(sortedWords.map(([w]) => w));
 
 // --- Morphology: verb paradigms, noun plurals, uncountable nouns, non-standard plurals ---
@@ -919,6 +946,7 @@ for (const [w, freq] of sortedWords) {
 
 function resolveGloss(w) {
   if (zhMap.has(w)) return zhMap.get(w);
+  if (regularFormOf.has(w) && zhMap.has(regularFormOf.get(w))) return zhMap.get(regularFormOf.get(w));
   // An inflected form means what its lemma means; the form itself already shows the tense / number.
   const lemma = inflectionToLemma[w];
   if (lemma && zhMap.has(lemma)) return zhMap.get(lemma);
@@ -1082,18 +1110,6 @@ for (const [w, c] of wordCount) {
 // `wether`) it stays in the middle tier: the engine alone leaves it, the sentence may still decide.
 for (const m of [wnNoun, wnVerb, wnAdj, wnAdv]) {
   for (const w of m.keys()) setTier(w, looksLikeMisspellingOfFrequentWord(w, wordCount.get(w) ?? 0) ? 2 : 3);
-}
-// A verb of the lexicon takes the regular endings, whether or not UniMorph lists them (`onboarding`,
-// `conformed`). Of the two spellings of -ed and -ing, with and without a doubled consonant, the one the
-// counts prefer is the word.
-for (const w of lexiconWordSet) {
-  if (w.length < 3 || irregularVerbs.has(w)) continue;
-  if (!((posMaskMap.get(w) ?? 0) & FLAG_POS_VERB) && !wnVerb.has(w)) continue;
-  const forms = regularVerbForms(w);
-  for (const spellings of [[forms.s], forms.ed, forms.ing]) {
-    const best = spellings.reduce((x, y) => ((wordCount.get(y) ?? 0) > (wordCount.get(x) ?? 0) ? y : x));
-    if (wordCount.has(best)) setTier(best, 3);
-  }
 }
 // Programming vocabulary (`struct`, `nginx`) is rare in general text. The most used tags of Stack Overflow
 // are words to the people who type them: kept as typed, never suggested.
