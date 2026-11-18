@@ -42,6 +42,12 @@ if [ -n "${VOKA_INSTALLER_IDENTITY:-}" ]; then SIGN_FLAGS=(--sign "$VOKA_INSTALL
 pkgbuild --root "$STAGE/root" --component-plist "$STAGE/component.plist" --scripts "$STAGE/scripts" \
   --identifier "$BUNDLE_ID" --version "$VERSION" --install-location / --ownership recommended \
   ${SIGN_FLAGS[@]+"${SIGN_FLAGS[@]}"} "$PKG"
+# Extended attributes of the staged files would travel as `._name` entries next to them.
+if pkgutil --payload-files "$PKG" | grep -q '/\._'; then
+  echo "error: the payload carries extended-attribute entries (._*); build from a shell that does not tag its files" >&2
+  rm -f "$PKG"
+  exit 1
+fi
 # The staged copies must not stay known to LaunchServices.
 LSREGISTER="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister"
 if [ -x "$LSREGISTER" ]; then
