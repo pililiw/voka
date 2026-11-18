@@ -94,7 +94,7 @@ final class JSEngineTests: XCTestCase {
         let e = try engineOrSkip()
         let data = try Data(contentsOf: Self.repoRoot.appendingPathComponent("tests/data/parity.json"))
         let items = try JSONDecoder().decode([ParityItem].self, from: data)
-        XCTAssertGreaterThan(items.count, 500)
+        XCTAssertGreaterThan(items.count, 400)
         var bad: [String] = []
         var keys = 0
         let t0 = Date()

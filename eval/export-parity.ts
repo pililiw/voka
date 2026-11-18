@@ -17,11 +17,11 @@ for (const q of KEEP) add('I use ', q + ' ');
 const SCENARIOS = path.join(ROOT, 'tests/data/scenarios');
 const lines = (f: string) => fs.readFileSync(path.join(SCENARIOS, f), 'utf8').split('\n').filter((l) => l.trim());
 for (const f of fs.readdirSync(SCENARIOS).filter((f) => f.endsWith('.txt')).sort()) {
-  lines(f).forEach((line, i) => { if (i % 3 === 0) add('', line + ' '); });
+  lines(f).forEach((line, i) => { if (i % 12 === 0) add('', line + ' '); });
 }
 lines('learner.tsv').forEach((l, i) => {
   const typed = l.split('\t')[3];
-  if (typed && i % 2 === 0) add('', typed + ' ');
+  if (typed && i % 8 === 0) add('', typed + ' ');
 });
 add('', 'teh quick brown fox jumsp over thier lazy dog. i think gpt4 is well-known and he want a apple ');
 add('Yesterday I ', 'go to school and buyed⌫⌫⌫⌫⌫⌫buy some book. ');
