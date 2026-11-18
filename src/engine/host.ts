@@ -3,7 +3,7 @@
  * crosses the boundary as plain values or JSON strings, so the native side only forwards keys and
  * applies the view that comes back.
  *
- *   Voka.init(dictJson)                                              -> '{"ok":true,"words":35200,...}'
+ *   Voka.init(dictJson)                                              -> '{"ok":true,"words":39812,...}'
  *   const sid = Voka.newSession()
  *   Voka.key(sid, 'a', shift, alt, ctrl, meta, textBeforeCaret, ctx) -> HostView JSON
  *   Voka.pick(sid, index, textBeforeCaret)                           -> HostView JSON (candidate clicked)
